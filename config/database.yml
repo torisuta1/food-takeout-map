@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: food_takeout_map_production
-  username: food_takeout_map
-  password: <%= ENV['FOOD_TAKEOUT_MAP_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %> 
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
