@@ -16,8 +16,59 @@
     font-size:30px;
     font-weight: bold;
     padding-top: 30px;
-        
     }
+    }
+
+    .service-contents {
+     background-color: #CFF;
+     
+      h2 {
+        color: #BAD3FF;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 50px;
+        }
+      
+    }
+    .contents {
+      font-size: 30px;
+      color: #39F;
+      text-align: center;
+    }
+
+    .description {
+      font-size: 20px;
+      color: #39F;
+      text-align: center;
+    }
+
+    .search {
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .follow {
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .like {
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .description-wrapper {
+      border-radius: 50%;
+      border: 5px solid #39F;
+      height: 400px;
+      position: relative;
     }
     
     
