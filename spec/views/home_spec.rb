@@ -28,4 +28,13 @@ RSpec.describe 'home_page' do
     expect(page).to have_content '一覧'
     end
   end
+
+  describe 'log_out' do  
+    it 'not existing ログアウト' do 
+      visit root_path
+    expect(page).to_not have_content 'ログアウト'
+    end
+  end
+
+  
 end
