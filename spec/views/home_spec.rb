@@ -36,5 +36,10 @@ RSpec.describe 'home_page' do
     end
   end
 
-  
+  describe 'my_page' do  
+    it 'not existing マイページ' do 
+      visit root_path
+    expect(page).to_not have_selector 'li', text: 'マイページ'
+    end
+  end
 end
