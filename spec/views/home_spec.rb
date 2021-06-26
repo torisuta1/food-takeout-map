@@ -21,4 +21,11 @@ RSpec.describe 'home_page' do
     expect(page).to have_content '検索'
     end
   end
+
+  describe 'view' do  
+    it 'existing 一覧' do 
+      visit root_path
+    expect(page).to have_content '一覧'
+    end
+  end
 end
