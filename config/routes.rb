@@ -4,9 +4,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'   
   } 
 
-  devise_scope :user do
+  devise_scope :users do
     get "sign_in", to: "users/sessions#new"
     get "sign_out", to: "users/sessions#destroy" 
   end
   root to: "home#index"
+  resources :users
 end
