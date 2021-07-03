@@ -73,13 +73,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true,
   :address => "smtp.gmail.com",
   :port => 587,
   :domain => 'smtp.gmail.com',
-  :user_name => "foodtakeoutmap@gmail.com", #gmailアドレス
-  :password => "railstest", #gmailパスワード
+  :user_name => ENV['WELCOME_MAILER_ADDRESS'], #gmailアドレス
+  :password =>  ENV['WELCOME_MAILER_PASSWORD'], #gmailパスワード
   :authentication => 'login',
 }
 end
