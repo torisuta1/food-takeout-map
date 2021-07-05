@@ -50,7 +50,7 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['DB_NAME'] %> 
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  database: food_takeout_map_production
+  username: torisuta
+  password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
 
