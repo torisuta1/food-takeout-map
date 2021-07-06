@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'home_page' do 
-  describe 'sign_in' do 
-    it 'existing サインイン' do
+  describe 'sign_up' do 
+    it 'existing サインアップ' do
     visit root_path
-    expect(page).to have_content 'サインイン'
+    expect(page).to have_content 'サインアップ'
     end
   end
 
