@@ -64,7 +64,7 @@ RSpec.describe 'User', type: :system do
                 end 
               end
 
-              context 'password confirmation' do 
+              context 'password confirmation not entered' do 
                 it 'Registration fails' do 
                   fill_in 'Username', with: 'test'
                   fill_in 'Email', with: 'test@example.com'
@@ -74,5 +74,19 @@ RSpec.describe 'User', type: :system do
                   expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
                   end 
                 end
+
+                context 'transition to the login screen' do
+                it 'go to the login screen' do
+                click_on 'Log in'
+                expect(page).to have_selector 'h2', text: 'Log in'
+                end 
+              end
+
+              context 'transition to the resend authentication email screen' do
+                it 'go to the resend authentication email' do
+                click_on '認証メールが届かない場合'
+                expect(page).to have_selector 'h2', text: 'Resend confirmation instructions'
+                end 
               end
             end
+          end
