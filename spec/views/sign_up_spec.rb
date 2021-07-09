@@ -17,25 +17,25 @@ RSpec.describe 'sign_up_page' do
     end
   end
 
-  context 'Email' do 
+  context 'email' do 
     it 'existing Email' do
     expect(page).to have_content 'Email'
     end
   end
 
-  context 'Password' do 
+  context 'password' do 
     it 'existing Password' do
     expect(page).to have_content 'Password'
     end
   end
 
-  context 'user_name' do 
+  context 'password confirmation' do 
     it 'existing Password confirmation' do
     expect(page).to have_content 'Password confirmation'
     end
   end
 
-  context 'Sign_up_button' do 
+  context 'sign_up_button' do 
     it 'existing Sign_up button' do
     expect(page).to have_button 'Sign up'
     end
@@ -47,7 +47,7 @@ RSpec.describe 'sign_up_page' do
     end
   end
 
-  context 'log_in' do 
+  context 'authentication email' do 
     it 'existing 認証メールが届かない場合' do
     expect(page).to have_link '認証メールが届かない場合'
     end
