@@ -1,7 +1,9 @@
 <div class="registration_contents">
   <h2>Log in</h2>
 
-  <%= form_with model: @user do |f| %>
+  <%= form_with model: @user, url: user_session_path(@user) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
