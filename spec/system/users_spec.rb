@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :system do
   let(:user) {create(:user)}
+  let!(:other_user) {create(:other_user)}
 
   describe 'sign_up' do
     before do 
@@ -93,8 +94,9 @@ RSpec.describe 'User', type: :system do
             describe 'log_in' do
               before do 
                 visit new_user_session_path
-                user1 =user
+                user1 = user
                 user1.confirm
+                
               end
 
               context 'Successfully logged in' do 
@@ -146,6 +148,26 @@ RSpec.describe 'User', type: :system do
                       click_on '認証メールが届かない場合'
                       expect(current_path).to eq new_user_confirmation_path
                       end 
-                    end                    
+                    end      
+                    
+                    context 'if unauthenticated' do 
+                      it 'can not log in' do
+                        fill_in 'Email', with: 'hogehoge1@example.com'
+                        fill_in 'Password', with: 'password2'
+                        click_on 'Log in'
+                        expect(current_path).to eq user_session_path
+                        expect(page).to have_content 'You have to confirm your email address before continuing.'
+                        end 
+                      end
+
+                      context 'not registered.' do 
+                        it 'can not log in' do
+                          fill_in 'Email', with: 'hogehoge2@example.com'
+                          fill_in 'Password', with: 'password2'
+                          click_on 'Log in'
+                          expect(current_path).to eq user_session_path
+                          expect(page).to have_content 'Invalid Email or password.'
+                          end 
+                        end
               end
             end
