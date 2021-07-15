@@ -1,7 +1,7 @@
 <div class="registration_contents">
   <h2>SIGN UP</h2>
 
-  <%= form_with model: @user do |f| %>
+  <%= form_with model: @user, url: sign_up_path do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">

@@ -4,7 +4,7 @@ RSpec.describe 'User', type: :system do
   let(:user) {create(:user)}
   let!(:other_user) {create(:other_user)}
 
-  describe 'sign_up' do
+  describe 'about sign_up' do
     before do 
       visit new_user_registration_path
     end
@@ -79,7 +79,7 @@ RSpec.describe 'User', type: :system do
                 context 'transition to the login screen' do
                 it 'go to the login screen' do
                 click_on 'Log in'
-                expect(page).to have_selector 'h2', text: 'LOG IN'
+                expect(current_path).to eq new_user_session_path
                 end 
               end
 
@@ -91,7 +91,7 @@ RSpec.describe 'User', type: :system do
               end
             end
 
-            describe 'log_in' do
+            describe 'about log_in' do
               before do 
                 visit new_user_session_path
                 user1 = user
@@ -99,7 +99,7 @@ RSpec.describe 'User', type: :system do
                 
               end
 
-              context 'Successfully logged in' do 
+              context 'normal input' do 
                 it 'successfully logged in' do
                   fill_in 'Email', with: 'hoge1@example.com'
                   fill_in 'Password', with: 'password'
@@ -169,5 +169,64 @@ RSpec.describe 'User', type: :system do
                           expect(page).to have_content 'Invalid Email or password.'
                           end 
                         end
-              end
-            end
+                      end
+
+              describe 'about reset_password' do 
+                before do 
+                  visit new_user_password_path            
+                end
+
+                context 'normal input' do 
+                  it 'transmission successful' do
+                    fill_in 'Email', with: 'hogehoge1@example.com'
+                    click_on 'Send me reset password instructions'
+                    expect(current_path).to eq new_user_session_path
+                    expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
+                    end
+                  end
+
+                  context 'unentered' do 
+                    it 'transmission fails' do
+                      fill_in 'Email', with: ''
+                      click_on 'Send me reset password instructions'
+                      expect(current_path).to eq user_password_path
+                      expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                      end
+                    end
+
+                    context 'unsigned email input' do 
+                      it 'transmission fails' do
+                        fill_in 'Email', with: 'test@example.com'
+                        click_on 'Send me reset password instructions'
+                        expect(current_path).to eq user_password_path
+                        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                        end
+                      end
+
+                    context 'transition to the login screen' do
+                      it 'go to the login screen' do
+                      click_on 'Log in'
+                      expect(current_path).to eq new_user_session_path
+                      end 
+                    end
+      
+                    context 'go to the sign-up screen' do
+                      it 'go to the sign-up screen' do
+                      click_on 'Sign up'
+                      expect(current_path).to eq new_user_registration_path
+                      end 
+                    end
+
+                    context 'transition to the resend authentication email screen' do
+                      it 'go to the resend authentication email' do
+                      click_on '認証メールが届かない場合'
+                      expect(current_path).to eq new_user_confirmation_path
+                      end 
+                    end
+                end
+              end 
+            
+
+
+
+
