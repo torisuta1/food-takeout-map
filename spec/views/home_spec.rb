@@ -7,37 +7,37 @@ RSpec.describe 'home_page' do
   
   context 'sign_up' do 
     it 'existing サインアップ' do
-    expect(page).to have_content 'サインアップ'
+      expect(page).to have_content 'サインアップ'
     end
   end
 
   context 'log_in' do  
     it 'existing ログイン' do 
-    expect(page).to have_content 'ログイン'
+      expect(page).to have_content 'ログイン'
     end
   end
 
   context 'search' do  
     it 'existing 検索' do 
-    expect(page).to have_content '検索'
+      expect(page).to have_content '検索'
     end
   end
 
   context 'view' do  
     it 'existing 一覧' do 
-    expect(page).to have_content '一覧'
+      expect(page).to have_content '一覧'
     end
   end
 
   context 'log_out' do  
     it 'not existing ログアウト' do 
-    expect(page).to_not have_content 'ログアウト'
+      expect(page).to_not have_content 'ログアウト'
     end
   end
 
   context 'my_page' do  
     it 'not existing マイページ' do 
-    expect(page).to_not have_selector 'li', text: 'マイページ'
+      expect(page).to_not have_selector 'li', text: 'マイページ'
     end
   end
 end
