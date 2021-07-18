@@ -26,7 +26,7 @@ RSpec.describe 'password_change_page' do
   end
 
   context 'change button' do
-    it 'existing change  button' do
+    it 'existing change button' do
     expect(page).to have_button 'Change my password'
     end
   end
