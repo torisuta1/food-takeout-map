@@ -3,7 +3,7 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new
-  #   super
+  #   # super
   # end
 
   # POST /resource/confirmation
