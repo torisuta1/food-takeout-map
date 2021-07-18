@@ -309,7 +309,60 @@ RSpec.describe 'User', type: :system do
                           end
                         end
                       end 
-                    end
+
+                      fdescribe 'about resend_email' do 
+                        before do 
+                          visit user_confirmation_path            
+                        end
+        
+                        context 'normal input' do 
+                          it 'transmission successful' do
+                            user
+                            fill_in 'Email', with: 'hoge1@example.com'
+                            click_on 'Resend confirmation instructions'
+                            expect(current_path).to eq new_user_session_path
+                            expect(page).to have_content 'You will receive an email with instructions for how to confirm your email address in a few minutes.'
+                            end
+                          end
+        
+                          context 'email not entered' do 
+                            it 'resend fails' do
+                              fill_in 'Email', with: ''
+                              click_on 'Resend confirmation instructions'
+                              expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                            end 
+                          end
+
+                          context 'unsigned email' do 
+                            it 'resend fails' do
+                              fill_in 'Email', with: 'test@example.com'
+                              click_on 'Resend confirmation instructions'
+                              expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                            end 
+                          end
+
+                          context 'transition to the login screen' do
+                            it 'go to the login screen' do
+                            click_on 'Log in'
+                            expect(current_path).to eq new_user_session_path
+                            end 
+                          end
+            
+                          context 'go to the sign-up screen' do
+                            it 'go to the sign-up screen' do
+                            click_on 'Sign up'
+                            expect(current_path).to eq new_user_registration_path
+                            end 
+                          end
+
+                          context 'go to the password reset screen' do
+                            it 'go to the password reset screen' do
+                            click_on 'Forgot your password?'
+                            expect(current_path).to eq new_user_password_path
+                            end 
+                          end
+                        end
+                      end
             
 
 
