@@ -2,7 +2,18 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :system do
   let(:user) {create(:user)}
+  let(:token) { user.send_reset_password_instructions }
   let!(:other_user) {create(:other_user)}
+
+  def extract_confirmation_url(mail)
+    body = mail.body.encoded
+    body[/http[^"]+/]
+  end
+
+  def extract_token_from_email(mail, token_name)
+    mail_body = mail.body.to_s
+    mail_body[/#{token_name.to_s}_token=(.+)$/, 1]
+  end
 
   describe 'about sign_up' do
     before do 
@@ -223,8 +234,82 @@ RSpec.describe 'User', type: :system do
                       expect(current_path).to eq new_user_confirmation_path
                       end 
                     end
-                end
-              end 
+                  end
+
+                describe 'about change_password' do 
+                  before do 
+                    user.confirm
+                    visit edit_user_password_path(reset_password_token: token)            
+                  end
+  
+                  context 'normal input' do 
+                    it 'successful change' do
+                      # fill_in 'Email', with: 'hoge1@example.com'
+                      # click_on 'Send me reset password instructions'
+                      # mail = ActionMailer::Base.deliveries.last
+                      # url = extract_confirmation_url(mail)
+                      # visit url
+                      fill_in 'New password', with: 'new-password'
+                      fill_in 'Confirm new password', with: 'new-password'
+                      click_on 'Change my password'
+                      expect(current_path).to eq root_path
+                      expect(page).to have_content 'Your password has been changed successfully. You are now signed in.'
+                      end
+                    end
+
+                    context 'Password not entered' do 
+                      it 'change fails' do
+                        fill_in 'New password', with: ''
+                        fill_in 'Confirm new password', with: ''
+                        click_on 'Change my password'
+                        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                      end 
+                    end
+                        context 'transition to the login screen' do
+                          it 'go to the login screen' do
+                          click_on 'Log in'
+                          expect(current_path).to eq new_user_session_path
+                          end 
+                        end
+          
+                        context 'go to the sign-up screen' do
+                          it 'go to the sign-up screen' do
+                          click_on 'Sign up'
+                          expect(current_path).to eq new_user_registration_path
+                          end 
+                        end
+    
+                        context 'transition to the resend authentication email screen' do
+                          it 'go to the resend authentication email' do
+                          click_on '認証メールが届かない場合'
+                          expect(current_path).to eq new_user_confirmation_path
+                          end 
+                        end
+
+                        context 'if unauthenticated' do 
+                          it 'will be changed and prompted for authentication' do 
+                            other_token = other_user.send_reset_password_instructions 
+                            visit edit_user_password_path(reset_password_token: other_token)  
+                            fill_in 'New password', with: 'new-password'
+                            fill_in 'Confirm new password', with: 'new-password'
+                            click_on 'Change my password'
+                            expect(current_path).to eq new_user_session_path
+                            expect(page).to have_content 'Your password has been changed successfully.'
+                            expect(page).to have_content 'You have to confirm your email address before continuing.'
+                          end
+                        end
+
+                        context 'token is invalid.' do 
+                          it 'change fails' do 
+                            visit edit_user_password_path(reset_password_token: 'invalid_token')  
+                            fill_in 'New password', with: 'new-password'
+                            fill_in 'Confirm new password', with: 'new-password'
+                            click_on 'Change my password'
+                            expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+                          end
+                        end
+                      end 
+                    end
             
 
 
