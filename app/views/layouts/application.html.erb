@@ -22,7 +22,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <% if user_signed_in? %> 
                 <li class="nav-item">
-                Logged in as <strong><%= current_user.email %></strong>.
+                Logged in as <strong><%= current_user.username %></strong>
                   <%= link_to "マイページ", edit_user_registration_path, class: "nav-link active" %> 
                 </li>
                 <li class="nav-item">
