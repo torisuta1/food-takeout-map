@@ -373,6 +373,140 @@ RSpec.describe 'User', type: :system do
       end  
     end
   end
+
+  describe 'about my_page' do 
+    let(:user) {create(:user,email:"test@example.com")}
+
+    before do 
+      user.confirm
+      visit new_user_session_path
+      fill_in 'Email', with: 'test@example.com'
+      fill_in 'Password', with: 'password'
+      click_on 'Log in'
+      click_on 'マイページ'
+    end
+
+    context 'normal input' do 
+      it 'successful update' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'Your account has been updated successfully.'
+      end
+    end
+
+    context 'username not enterd' do 
+      it 'update fails' do
+        fill_in 'Username', with: ''
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+      end
+    end
+
+    context 'Email not enterd' do 
+      it 'update fails' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: ''
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+      end
+    end
+   
+    context 'password not enterd' do 
+      it 'update fails' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: ''
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '2 ERRORS PROHIBITED THIS USER FROM BEING SAVED:'
+      end
+    end
+
+    context 'password confirmation not enterd' do 
+      it 'update fails' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: ''
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+      end
+    end
+
+    context 'password not enterd & current password normal input' do 
+      it 'successful update' do
+        fill_in 'Username', with: 'hoge1'
+        fill_in 'Email', with: 'test1@example.com'
+        fill_in 'Password', with: ''
+        fill_in 'Password confirmation', with: ''
+        fill_in 'Current password', with: 'password'
+        click_on 'Update'
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.'    
+      end
+    end
+
+    context 'current password not enterd' do 
+      it 'update falis' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: ''
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+      end
+    end
+
+    context 'abnormal value input' do 
+      it 'update falis' do
+        fill_in 'Username', with: 'hoge'
+        fill_in 'Email', with: 'test@example.com'
+        fill_in 'Password', with: 'new-password'
+        fill_in 'Password confirmation', with: 'new-password'
+        fill_in 'Current password', with: ''
+        click_on 'Update'
+        expect(current_path).to eq user_registration_path
+        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+      end
+    end
+
+    context 'delete Account' do 
+      it 'account will be deleted.' do 
+        click_on 'Cancel my account'
+        page.accept_confirm   
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+      end
+    end
+
+    context 'not logged in' do 
+      it 'will be asked to log in' do 
+        click_on 'ログアウト'
+        visit edit_user_registration_path
+        expect(current_path).to eq new_user_session_path
+      end
+    end
+  end
 end
             
 
