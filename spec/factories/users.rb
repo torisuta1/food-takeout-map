@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:email) { |n| "hoge#{n}@example.com"}
     password {"password"}
     password_confirmation {"password"}
-   
+  
   
   
 
