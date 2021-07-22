@@ -97,11 +97,12 @@ body {
       $blue:#1fb5bf;
 
 .registration_contents {
-  width: 40%;
+  width: 70%;
   min-width: 320px;
   max-width: 475px;
   background: #fff;
-  position: absolute;
+  position: relative;
+  margin-top: 330px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -111,10 +112,10 @@ body {
   -o-transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 
-@media(max-width: 599px){
+@media(max-width: 40em){
   width: 95%;
   position: relative;
-  margin: 2,5% auto 0 auto;
+  margin: 0 auto 0 auto;
   left: 0%;
   transform: translate(0%,0%);
   }

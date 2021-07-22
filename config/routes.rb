@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     get "users", to:"users/registrations#edit"
   end
   root to: "home#index"
-  
+  resources :posts, only: [:new, :create, :show]
 end
