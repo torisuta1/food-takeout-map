@@ -1,12 +1,12 @@
 <div class="registration_contents">
+  
+  <%= form_with model: @post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
 
-<%= form_with model: @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+    <%= f.label :content %>
+    <%= f.text_area :content, size: "50x20"%>
 
-  <%= f.label :content %>
-  <%= f.text_area :content, size: "50x20"%>
-
-  <%= f.submit "投稿", class: "actions"  %>
+    <%= f.submit "投稿", class: "actions"  %>
   <% end %>
-  </div>
+</div>
