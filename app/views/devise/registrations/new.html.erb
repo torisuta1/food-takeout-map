@@ -37,4 +37,8 @@
   
   <%= render "devise/shared/links" %>
 </div>
+
+<% if @user.errors.any? %>
+  <%= javascript_pack_tag 'users/sign_up_render' %>
+<% end %>
     
