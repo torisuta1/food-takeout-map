@@ -14,3 +14,7 @@
 
   <%= render "devise/shared/links" %>
 </div>
+
+<% if @user.errors.any? %>
+  <%= javascript_pack_tag 'users/password_render' %>
+<% end %>

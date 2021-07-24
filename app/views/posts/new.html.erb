@@ -10,3 +10,7 @@
     <%= f.submit "投稿", class: "actions"  %>
   <% end %>
 </div>
+
+<% if @post.errors.any? %>
+  <%= javascript_pack_tag 'posts/new' %>
+<% end %>
