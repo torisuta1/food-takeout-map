@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   } 
 
   root to: "home#index"
-  resources :posts, only: [:new, :create, :show]
+  resources :posts, only: [:new, :create, :show, :index]
 end
