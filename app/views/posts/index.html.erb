@@ -1,6 +1,6 @@
 <div class="post-wrapper">
   <div class="box B_2"> 
-    <h2>My Posted Articles</h2>
+    <h2>Article List</h2>
     <% @posts.each do |post| %>
       <p>タイトル:&ensp;<%= post.title %></p><br>
       <p>レビュー:&ensp;<%= post.content %></p><br>
@@ -11,6 +11,3 @@
 </div>
 
 <%= paginate @posts %>
-  
-     
-       
