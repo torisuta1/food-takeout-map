@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: params[:id]).page(params[:page])
+    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
   end
 
 private

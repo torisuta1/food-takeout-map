@@ -271,7 +271,10 @@ body {
   }
 }
 
-  // 投稿一覧
+  // マイ投稿＆投稿一覧
+.pagination {
+  justify-content: center;
+  }
 .post-wrapper {
   font-family: 'Baloo Bhaina', cursive;
 	font-size: 20px;
