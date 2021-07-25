@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  def index
-    
+  
+
   def new
     @post = Post.new
   end
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: params[:id])
+    @posts = Post.where(user_id: params[:id]).page(params[:page])
   end
 
 private

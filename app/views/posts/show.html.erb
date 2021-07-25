@@ -4,11 +4,13 @@
     <% @posts.each do |post| %>
       <p>タイトル:&ensp;<%= post.title %></p><br>
       <p>レビュー:&ensp;<%= post.content %></p><br>
-      <p>投稿日:&ensp;<%= post.created_at %></p><br>
+      <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
       <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <% end %>
   </div>
 </div>
+
+<%= paginate @posts %>
   
      
        
