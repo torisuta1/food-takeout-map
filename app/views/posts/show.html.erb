@@ -1,2 +1,16 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="post-wrapper">
+  <div class="box B_2"> 
+    <h2>My posted articles</h2>
+    <% @posts.each do |post| %>
+      <p>タイトル:&ensp;<%= post.title %></p><br>
+      <p>レビュー:&ensp;<%= post.content %></p><br>
+      <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
+      <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+    <% end %>
+  </div>
+</div>
+
+<%= paginate @posts %>
+  
+     
+       
