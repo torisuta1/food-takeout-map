@@ -7,43 +7,43 @@ RSpec.describe 'sign_up_page' do
 
   context 'sign_up' do
     it 'existing SIGN UP' do
-      expect(page).to have_selector 'h2', text: 'SIGN UP'
+      expect(page).to have_selector 'h2', text: 'サインアップ'
     end
   end
 
   context 'user_name' do 
     it 'existing Username' do
-      expect(page).to have_content 'Username'
+      expect(page).to have_content 'ユーザーネーム'
     end
   end
 
   context 'email' do 
     it 'existing Email' do
-      expect(page).to have_content 'Email'
+      expect(page).to have_content 'メールアドレス'
     end
   end
 
   context 'password' do 
     it 'existing Password' do
-      expect(page).to have_content 'Password'
+      expect(page).to have_content 'パスワード'
     end
   end
 
   context 'password confirmation' do 
     it 'existing Password confirmation' do
-      expect(page).to have_content 'Password confirmation'
+      expect(page).to have_content 'パスワード確認'
     end
   end
 
   context 'sign_up_button' do 
     it 'existing Sign_up button' do
-      expect(page).to have_button 'Sign up'
+      expect(page).to have_button 'サインアップ'
     end
   end
 
   context 'log_in' do 
     it 'existing log_in link' do
-      expect(page).to have_link 'Log in'
+      expect(page).to have_link 'ログイン'
     end
   end
 

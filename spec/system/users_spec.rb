@@ -16,74 +16,74 @@ RSpec.describe 'User', type: :system do
 
     context 'if entered successfully' do 
       it 'Successful registration(Unauthorized)' do 
-        fill_in 'Username', with: 'test'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'password'
-        click_on 'Sign up'
+        fill_in 'ユーザーネーム', with: 'test'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'password'
+        fill_in '確認用パスワード', with: 'password'
+        click_on 'サインアップ'
         expect(current_path).to eq root_path
-        expect(page).to have_content 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+        expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
       end 
     end
 
     context 'abnormal value' do 
       it 'Registration fails' do 
-        fill_in 'Username', with: ''
-        fill_in 'Email', with: ''
-        fill_in 'Password', with: ''
-        fill_in 'Password confirmation', with: ''
-        click_on 'Sign up'
-        expect(page).to have_content '3 ERRORS PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'ユーザーネーム', with: ''
+        fill_in 'メールアドレス', with: ''
+        fill_in 'パスワード', with: ''
+        fill_in '確認用パスワード', with: ''
+        click_on 'サインアップ'
+        expect(page).to have_content '3 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'username not entered' do 
       it 'Registration fails' do 
-        fill_in 'Username', with: ''
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'password'
-        click_on 'Sign up'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'ユーザーネーム', with: ''
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'password'
+        fill_in '確認用パスワード', with: 'password'
+        click_on 'サインアップ'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'email not entered' do 
       it 'Registration fails' do 
-        fill_in 'Username', with: 'test'
-        fill_in 'Email', with: ''
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'password'
-        click_on 'Sign up'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'ユーザーネーム', with: 'test'
+        fill_in 'メールアドレス', with: ''
+        fill_in 'パスワード', with: 'password'
+        fill_in '確認用パスワード', with: 'password'
+        click_on 'サインアップ'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'password not entered' do 
       it 'Registration fails' do 
-        fill_in 'Username', with: 'test'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: ''
-        fill_in 'Password confirmation', with: 'password'
-        click_on 'Sign up'
-        expect(page).to have_content '2 ERRORS PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'ユーザーネーム', with: 'test'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: ''
+        fill_in '確認用パスワード', with: 'password'
+        click_on 'サインアップ'
+        expect(page).to have_content '2 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'password confirmation not entered' do 
       it 'Registration fails' do 
-        fill_in 'Username', with: 'test'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: ''
-        click_on 'Sign up'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'ユーザーネーム', with: 'test'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'password'
+        fill_in '確認用パスワード', with: ''
+        click_on 'サインアップ'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'Log in'
+        click_on 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
@@ -101,7 +101,7 @@ RSpec.describe 'User', type: :system do
         expect(ActionMailer::Base.deliveries.size).to eq(1)
         mail = ActionMailer::Base.deliveries.last
         mail_body = mail.body.encoded
-        expect(mail_body).to have_link 'Confirm my account'
+        expect(mail_body).to have_link 'アカウントを認証する'
       end
     end
   end
@@ -115,44 +115,44 @@ RSpec.describe 'User', type: :system do
 
     context 'normal input' do 
       it 'successfully logged in' do
-        fill_in 'Email', with: 'hoge1@example.com'
-        fill_in 'Password', with: 'password'
-        click_on 'Log in'
+        fill_in 'メールアドレス', with: 'hoge1@example.com'
+        fill_in 'パスワード', with: 'password'
+        click_on 'ログイン'
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Signed in successfully.'
+        expect(page).to have_content 'ログインしました。'
       end 
     end
 
     context 'email not entered' do 
       it 'login fails' do
-        fill_in 'Email', with: ''
-        fill_in 'Password', with: 'password'
-        click_on 'Log in'
+        fill_in 'メールアドレス', with: ''
+        fill_in 'パスワード', with: 'password'
+        click_on 'ログイン'
         expect(current_path).to eq user_session_path
-        expect(page).to have_content 'Invalid Email or password.'
+        expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
     end
 
     context 'password not entered' do 
       it 'login fails' do
-        fill_in 'Email', with: 'hoge1@example.com'
-        fill_in 'Password', with: ''
-        click_on 'Log in'
+        fill_in 'メールアドレス', with: 'hoge1@example.com'
+        fill_in 'パスワード', with: ''
+        click_on 'ログイン'
         expect(current_path).to eq user_session_path
-        expect(page).to have_content 'Invalid Email or password.'
+        expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
     end
 
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'Sign up'
+        click_on 'サインアップ'
         expect(current_path).to eq new_user_registration_path
       end 
     end
     
     context 'go to the password reset screen' do
       it 'go to the password reset screen' do
-        click_on 'Forgot your password?'
+        click_on 'パスワードを忘れた場合'
         expect(current_path).to eq new_user_password_path
       end 
     end
@@ -166,21 +166,21 @@ RSpec.describe 'User', type: :system do
       
     context 'if unauthenticated' do 
       it 'can not log in' do
-        fill_in 'Email', with: 'hogehoge1@example.com'
-        fill_in 'Password', with: 'password2'
-        click_on 'Log in'
+        fill_in 'メールアドレス', with: 'hogehoge1@example.com'
+        fill_in 'パスワード', with: 'password2'
+        click_on 'ログイン'
         expect(current_path).to eq user_session_path
-        expect(page).to have_content 'You have to confirm your email address before continuing.'
+        expect(page).to have_content 'メールアドレスの本人確認が必要です。'
       end 
     end
 
     context 'not registered.' do 
       it 'can not log in' do
-        fill_in 'Email', with: 'hogehoge2@example.com'
-        fill_in 'Password', with: 'password2'
-        click_on 'Log in'
+        fill_in 'メールアドレス', with: 'hogehoge2@example.com'
+        fill_in 'パスワード', with: 'password2'
+        click_on 'ログイン'
         expect(current_path).to eq user_session_path
-        expect(page).to have_content 'Invalid Email or password.'
+        expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
     end
   end
@@ -192,41 +192,41 @@ RSpec.describe 'User', type: :system do
 
     context 'normal input' do 
       it 'transmission successful' do
-        fill_in 'Email', with: 'hogehoge1@example.com'
-        click_on 'Send me reset password instructions'
+        fill_in 'メールアドレス', with: 'hogehoge1@example.com'
+        click_on 'パスワードリセットメールを送信'
         expect(current_path).to eq new_user_session_path
-        expect(page).to have_content 'You will receive an email with instructions on how to reset your passwoa few minutes.'
+        expect(page).to have_content 'パスワードの再設定について数分以内にメールでご連絡いたします。'
       end
     end
 
     context 'unentered' do 
       it 'transmission fails' do
-        fill_in 'Email', with: ''
-        click_on 'Send me reset password instructions'
+        fill_in 'メールアドレス', with: ''
+        click_on 'パスワードリセットメールを送信'
         expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end
     end
 
     context 'unsigned email input' do 
       it 'transmission fails' do
-        fill_in 'Email', with: 'test@example.com'
-        click_on 'Send me reset password instructions'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        click_on 'パスワードリセットメールを送信'
         expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'Log in'
+        click_on 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
       
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'Sign up'
+        click_on 'サインアップ'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -242,12 +242,12 @@ RSpec.describe 'User', type: :system do
       it 'successful change' do 
         ActionMailer::Base.deliverie
         user.confirm
-        fill_in 'Email', with: 'hoge1@example.com'
-        click_on 'Send me reset password instructions'
+        fill_in 'メールアドレス', with: 'hoge1@example.com'
+        click_on 'パスワードリセットメールを送信'
         expect(ActionMailer::Base.deliveries.size).to eq(2)
         mail = ActionMailer::Base.deliveries.last
         mail_body = mail.body.encoded
-        expect(mail_body).to have_link 'Change my password'
+        expect(mail_body).to have_link 'パスワード変更'
       end 
     end
   end
@@ -260,33 +260,33 @@ RSpec.describe 'User', type: :system do
   
     context 'normal input' do 
       it 'successful change' do
-        fill_in 'New password', with: 'new-password'
-        fill_in 'Confirm new password', with: 'new-password'
-        click_on 'Change my password'
+        fill_in '新パスワード', with: 'new-password'
+        fill_in 'パスワード確認', with: 'new-password'
+        click_on 'パスワード変更'
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Your password has been changed successfully. You are now signed in.'
+        expect(page).to have_content 'パスワードが正しく変更されました。'
       end
     end
 
-    context 'Password not entered' do 
+    context 'password not entered' do 
       it 'change fails' do
-        fill_in 'New password', with: ''
-        fill_in 'Confirm new password', with: ''
-        click_on 'Change my password'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in '新パスワード', with: ''
+        fill_in 'パスワード確認', with: ''
+        click_on 'パスワード変更'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'Log in'
+        click_on 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
           
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'Sign up'
+        click_on 'サインアップ'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -302,22 +302,22 @@ RSpec.describe 'User', type: :system do
       it 'will be changed and prompted for authentication' do 
         other_token = other_user.send_reset_password_instructions 
         visit edit_user_password_path(reset_password_token: other_token)  
-        fill_in 'New password', with: 'new-password'
-        fill_in 'Confirm new password', with: 'new-password'
-        click_on 'Change my password'
+        fill_in '新パスワード', with: 'new-password'
+        fill_in 'パスワード確認', with: 'new-password'
+        click_on 'パスワード変更'
         expect(current_path).to eq new_user_session_path
-        expect(page).to have_content 'Your password has been changed successfully.'
-        expect(page).to have_content 'You have to confirm your email address before continuing.'
+        expect(page).to have_content 'パスワードが正しく変更されました。'
+        expect(page).to have_content 'メールアドレスの本人確認が必要です。'
       end
     end
 
     context 'token is invalid.' do 
       it 'change fails' do 
         visit edit_user_password_path(reset_password_token: 'invalid_token')  
-        fill_in 'New password', with: 'new-password'
-        fill_in 'Confirm new password', with: 'new-password'
-        click_on 'Change my password'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in '新パスワード', with: 'new-password'
+        fill_in 'パスワード確認', with: 'new-password'
+        click_on 'パスワード変更'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end
     end
   end 
@@ -329,46 +329,46 @@ RSpec.describe 'User', type: :system do
     context 'normal input' do 
       it 'transmission successful' do
         user
-        fill_in 'Email', with: 'hoge1@example.com'
-        click_on 'Resend confirmation instructions'
+        fill_in 'メールアドレス', with: 'hoge1@example.com'
+        click_on '認証メール再送'
         expect(current_path).to eq new_user_session_path
-        expect(page).to have_content 'You will receive an email with instructions for how to confirm your email address in a few minutes.'
+        expect(page).to have_content 'あなたのメールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。'
       end
     end
         
     context 'email not entered' do 
       it 'resend fails' do
-        fill_in 'Email', with: ''
-        click_on 'Resend confirmation instructions'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'メールアドレス', with: ''
+        click_on '認証メール再送'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'unsigned email' do 
       it 'resend fails' do
-        fill_in 'Email', with: 'test@example.com'
-        click_on 'Resend confirmation instructions'
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        click_on '認証メール再送'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'Log in'
+        click_on 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
             
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'Sign up'
+        click_on 'サインアップ'
         expect(current_path).to eq new_user_registration_path
       end 
     end
 
     context 'go to the password reset screen' do
       it 'go to the password reset screen' do
-        click_on 'Forgot your password?'
+        click_on 'パスワードを忘れた場合'
         expect(current_path).to eq new_user_password_path
       end  
     end
@@ -380,122 +380,122 @@ RSpec.describe 'User', type: :system do
     before do 
       user.confirm
       visit new_user_session_path
-      fill_in 'Email', with: 'test@example.com'
-      fill_in 'Password', with: 'password'
-      click_on 'Log in'
+      fill_in 'メールアドレス', with: 'test@example.com'
+      fill_in 'パスワード', with: 'password'
+      click_on 'ログイン'
       click_on 'マイページ'
     end
 
     context 'normal input' do 
       it 'successful update' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Your account has been updated successfully.'
+        expect(page).to have_content 'アカウント情報を変更しました。'
       end
     end
 
     context 'username not enterd' do 
       it 'update fails' do
-        fill_in 'Username', with: ''
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: ''
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
       end
     end
 
-    context 'Email not enterd' do 
+    context 'email not enterd' do 
       it 'update fails' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: ''
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: ''
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
       end
     end
    
     context 'password not enterd' do 
       it 'update fails' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: ''
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: ''
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '2 ERRORS PROHIBITED THIS USER FROM BEING SAVED:'
+        expect(page).to have_content '2 件のエラーが発生したため USER は保存されませんでした:'
       end
     end
 
     context 'password confirmation not enterd' do 
       it 'update fails' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: ''
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: ''
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
       end
     end
 
     context 'password not enterd & current password normal input' do 
       it 'successful update' do
-        fill_in 'Username', with: 'hoge1'
-        fill_in 'Email', with: 'test1@example.com'
-        fill_in 'Password', with: ''
-        fill_in 'Password confirmation', with: ''
-        fill_in 'Current password', with: 'password'
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge1'
+        fill_in 'メールアドレス', with: 'test1@example.com'
+        fill_in 'パスワード', with: ''
+        fill_in '確認用パスワード', with: ''
+        fill_in '現在のパスワード', with: 'password'
+        click_on '更新'
         expect(current_path).to eq root_path
-        expect(page).to have_content 'You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.'    
+        expect(page).to have_content 'アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。'    
       end
     end
 
     context 'current password not enterd' do 
       it 'update falis' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: ''
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: ''
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
       end
     end
 
     context 'abnormal value input' do 
       it 'update falis' do
-        fill_in 'Username', with: 'hoge'
-        fill_in 'Email', with: 'test@example.com'
-        fill_in 'Password', with: 'new-password'
-        fill_in 'Password confirmation', with: 'new-password'
-        fill_in 'Current password', with: ''
-        click_on 'Update'
+        fill_in 'ユーザーネーム', with: 'hoge'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'new-password'
+        fill_in '確認用パスワード', with: 'new-password'
+        fill_in '現在のパスワード', with: ''
+        click_on '更新'
         expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 ERROR PROHIBITED THIS USER FROM BEING SAVED:'    
+        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
       end
     end
 
     context 'delete Account' do 
       it 'account will be deleted.' do 
-        click_on 'Cancel my account'
+        click_on 'アカウント削除'
         page.accept_confirm   
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
+        expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
       end
     end
 

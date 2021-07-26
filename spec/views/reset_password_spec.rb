@@ -7,31 +7,31 @@ RSpec.describe 'reset_password_page' do
 
   context 'reset_password' do
     it 'existing forgot your password?' do
-      expect(page).to have_selector 'h2', text: 'Forgot your password?'
+      expect(page).to have_selector 'h2', text: 'パスワードを忘れた場合'
     end
   end
 
   context 'email' do
     it 'existing email' do
-      expect(page).to have_content 'Email'
+      expect(page).to have_content 'メールアドレス'
     end
   end
 
   context 'send_button' do
     it 'existing send_button' do
-      expect(page).to have_button 'Send me reset password instructions'
+      expect(page).to have_button 'パスワードリセットメールを送信'
     end
   end
 
   context 'log_in_link' do
     it 'existing log_inn_link' do
-      expect(page).to have_link 'Log in'
+      expect(page).to have_link 'ログイン'
     end
   end
 
   context 'sign_up_link' do
     it 'existing sign_up_link' do
-      expect(page).to have_link 'Sign up'
+      expect(page).to have_link 'サインアップ'
     end
   end
 
