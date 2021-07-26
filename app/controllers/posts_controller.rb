@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 private
 
   def post_params 
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :genre_id)
   end
 
 end
