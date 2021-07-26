@@ -1,10 +1,10 @@
 <div class="registration_contents">
   
   <%= form_with model: @post do |f| %>
-    <%= f.label :title %>
+    <%= f.label :タイトル %>
     <%= f.text_field :title %>
 
-    <%= f.label :content %>
+    <%= f.label :コンテンツ %>
     <%= f.text_area :content, size: "50x20"%>
 
     <%= f.label :genre_id, "価格帯" %>

@@ -1,5 +1,5 @@
 <div class="registration_contents">
-  <h2>Log in</h2>
+  <h2>ログイン</h2>
 
   <%= form_with model: @user, url: user_session_path do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -19,7 +19,7 @@
       <%= f.check_box :remember_me, class: "login_check_box" %>
     <% end %>
     
-    <%= f.submit "Log in", class: "actions" %>
+    <%= f.submit "ログイン", class: "actions" %>
   <% end %>
 
   <%= render "devise/shared/links" %>

@@ -9,37 +9,37 @@ RSpec.describe 'password_change_page' do
 
   context 'change password' do
     it 'existing change your password' do
-      expect(page).to have_selector 'h2', text: 'Change your password'
+      expect(page).to have_selector 'h2', text: 'パスワード変更'
     end
   end
 
   context 'new password' do
     it 'existing new password' do
-      expect(page).to have_content 'New password'
+      expect(page).to have_content '新パスワード'
     end
   end
 
   context 'confirm new password' do
     it 'existing confirm new password' do
-      expect(page).to have_content 'Confirm new password'
+      expect(page).to have_content 'パスワード確認'
     end
   end
 
   context 'change button' do
     it 'existing change button' do
-      expect(page).to have_button 'Change my password'
+      expect(page).to have_button 'パスワード変更'
     end
   end
 
   context 'log_in_link' do
     it 'existing log_inn_link' do
-      expect(page).to have_link 'Log in'
+      expect(page).to have_link 'ログイン'
     end
   end
 
   context 'sign_up_link' do
     it 'existing sign_up_link' do
-      expect(page).to have_link 'Sign up'
+      expect(page).to have_link 'サインアップ'
     end
   end
 

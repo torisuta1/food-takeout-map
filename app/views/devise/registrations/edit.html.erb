@@ -1,11 +1,11 @@
 <div class="my_page_contents">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>ユーザー編集</h2>
 
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label :username %><br />
+      <%= f.label :ユーザーネーム %><br />
       <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
     </div>
 
@@ -19,12 +19,12 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %> <i>(変更希望がなければ空欄でも可能です)</i><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
       
       <% if @minimum_password_length %>
         <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <em><%= @minimum_password_length %>文字以上</em>
      <% end %>
     </div>
 
@@ -34,17 +34,17 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :現在のパスワード %> <i>(変更を反映するには必要です)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password" %>
     </div>
 
-    <%= f.submit "Update", class:"actions" %>
+    <%= f.submit "更新", class:"actions" %>
   
   <% end %>
 
-  <h3>Cancel my account</h3>
+  <h3>アカウント削除</h3>
 
-  <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: "actions" %></p>
+  <p><%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にいいですか?" }, method: :delete,class: "actions" %></p>
 
 </div>
 
