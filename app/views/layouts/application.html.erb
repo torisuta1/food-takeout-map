@@ -40,7 +40,7 @@
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><%= link_to "検索", "#", class: "dropdown-item" %></li>
+                    <li><%= link_to "検索", search_posts_path, class: "dropdown-item" %></li>
                     <li><%= link_to "一覧", posts_path, class: "dropdown-item" %></li>
                     <li><%= link_to "投稿する", new_post_path, class: "dropdown-item" %></li>
                     <li><%= link_to "マイ投稿", post_path(current_user), class: "dropdown-item" if user_signed_in? %></li> 

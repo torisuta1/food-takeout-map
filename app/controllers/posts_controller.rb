@@ -10,7 +10,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
@@ -24,6 +23,10 @@ class PostsController < ApplicationController
 
   def show
     @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
+  end
+
+  def search
+    @posts = Post.search(params[:search], params[:genre_id]).order("created_at DESC").page(params[:page]).per(10)
   end
 
 private

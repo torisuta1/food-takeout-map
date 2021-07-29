@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   } 
 
   root to: "home#index"
-  resources :posts, only: [:new, :create, :show, :index]
+  resources :posts, only: [:new, :create, :show, :index] do
+    collection do 
+      get 'search'
+    end
+  end
   resources :genres, only: [:new, :create, :index]
 end
