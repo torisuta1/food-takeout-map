@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search], params[:genre_id])
+    @posts = Post.search(params[:search], params[:genre_id]).order("created_at DESC").page(params[:page]).per(10)
   end
 
 private
