@@ -15,10 +15,11 @@
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
     <div class="field">
+      <em><%= @minimum_password_length %>文字以上</em><br>
       <%= f.label :password %> <i>(変更希望がなければ空欄でも可能です)</i><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
       
@@ -36,6 +37,11 @@
     <div class="field">
       <%= f.label :現在のパスワード %> <i>(変更を反映するには必要です)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :プロフィール %><br />
+      <%= f.text_area :profile, size: "50x5" %>
     </div>
 
     <%= f.submit "更新", class:"actions" %>
