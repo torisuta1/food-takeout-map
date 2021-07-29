@@ -1,0 +1,39 @@
+<%= form_with url: search_posts_path, method: :get, class: 'search_form' do |f| %>
+  <%= f.text_field :search %>
+  <%= f.select :genre_id, [['~1500円', 1], ['1500円~', 2]], {include_blank: true} %>
+  <%= f.submit :search,  class: 'btn btn-primary' %>
+<% end %>
+
+<% if @posts == Post.all %>
+<p>検索条件が指定されていません、全投稿を表示します。</p>
+<% @posts.each do |post| %>
+  <ul> 
+   <li>
+   <%= post.title %>
+   <%= post.content %>
+   <%= post.created_at %>
+   <%= post.user.username %>
+   </li>
+   </ul>
+   <% end %>
+<% else %>
+<p>検索結果</p>
+<% @posts.each do |post| %>
+    <ul> 
+     <li>
+     <%= post.title %>
+     <%= post.content %>
+     <%= post.created_at %>
+     <%= post.user.username %>
+     </li>
+     </ul>
+  <% end %>
+  <% end %>
+  
+
+
+  
+  
+  
+ 
+
