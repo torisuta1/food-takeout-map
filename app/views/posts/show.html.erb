@@ -5,7 +5,9 @@
       <p>タイトル:&ensp;<%= post.title %></p><br>
       <p>レビュー:&ensp;<%= post.content %></p><br>
       <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
-      <%= link_to '削除', post_path(post), method: :delete %>
+      <% if post.user_id == current_user.id %>
+        <%= link_to '削除', post_path(post), method: :delete, data: {confirm: '本当にいいですか？'} %>
+      <% end %>
       <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <% end %>
   </div>
