@@ -1,8 +1,8 @@
 <% @posts.each do |post| %>
-  
   <p>タイトル:&ensp;<%= post.title %></p><br>
   <p>レビュー:&ensp;<%= post.content %></p><br>
   <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
   <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user_id) %></p><br>
+  <p>いいね件数:&ensp;<%= post.likes.count %></p>
   <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 <% end %>

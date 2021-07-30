@@ -9,10 +9,10 @@
     <% if params[:button] %>
       <% if @posts == Post.all.order("created_at DESC").page(params[:page]).per(10) %>
         <p>検索条件が指定されていません、全投稿を表示します。</p>
-        <%= render 'posts_search' %>
+        <%= render 'posts_index' %>
       <% else %>
         <p>検索結果</p>
-        <%= render 'posts_search' %>
+        <%= render 'posts_index' %>
       <% end %>
       <%= paginate @posts %>
     <% end %>
