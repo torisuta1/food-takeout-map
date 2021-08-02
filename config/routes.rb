@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do 
       get 'search'
     end
-  end
+    member do 
+      get 'my_post'
+    end
   resources :genres, only: [:new, :create, :index]
+end
 end

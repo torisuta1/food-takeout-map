@@ -30,11 +30,15 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
+    @post = Post.find(params[:id])
   end
 
   def search
     @posts = Post.search(params[:search], params[:genre_id]).order("created_at DESC").page(params[:page]).per(10)
+  end
+
+  def my_post
+    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
   end
 
 private
