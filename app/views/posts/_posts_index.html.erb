@@ -2,18 +2,8 @@
   <p>タイトル:&ensp;<%= post.title %></p><br>
   <p>レビュー:&ensp;<%= post.content %></p><br>
   <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
-  <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user_id) %></p><br>
-  <p>いいね件数:&ensp;<%= post.likes.count %></p>
-  
-  <% if current_user&.already_liked?(post) %>
-    <%= button_to post_like_path(post.id, current_user), method: :delete do %>
-      <i class="fas fa-heart"></i>
-    <% end %>
-    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-  <% else %>
-    <%= button_to post_likes_path(post) do %>
-      <i class="far fa-heart"></i>
-    <% end %>
-    <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-  <% end %>
+  <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post) %></p><br>
+  <span id= "posts_like-button-<%= post.id %>">
+    <%= render 'likes/posts_like_button', post: post %>
+  </span>
 <% end %>
