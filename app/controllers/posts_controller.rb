@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def my_post
-    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(10)
+    @posts = Post.where(user_id: params[:id]).order("created_at DESC").page(params[:page]).per(10)
   end
 
 private
