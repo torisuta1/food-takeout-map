@@ -3,13 +3,17 @@
     <h2>ユーザー詳細</h2>
     <p>いいねしている投稿</p>
     <% @user.liked_posts.each do |post| %>
-      <p>タイトル:&ensp;<%= link_to post.title %></p>
+      <p>タイトル:&ensp;<%= link_to post.title, post_path(post) %></p>
     <% end %>
     <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <p>ユーザーネーム:&ensp;<%= @user.username %><br></p>
     <p>プロフィール:<br><%= @user.profile %></p>
     <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-    <%= render 'user_posts' %>
+    <% @user.posts.order(created_at: :desc).each do |post| %>
+      <span id= "user-post-like-button-<%= post.id %>"> 
+        <%= render 'likes/user_posts', post: post, user: @user %>
+      </span>
+    <% end %>
     
     <%= paginate @posts %>
   </div>

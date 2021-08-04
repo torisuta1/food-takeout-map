@@ -1,0 +1,22 @@
+<p>タイトル:&ensp;<%= post.title %></p><br>
+<p>レビュー:&ensp;<%= post.content %></p><br>
+<p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
+<p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user_id) %></p><br>
+<p>いいね件数:&ensp; <%= post.likes.count %></p>
+<% if current_user.already_liked?(post) %>
+  <%= button_to  post_like_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-heart"></i>
+  <% end %>
+  <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<% else %>
+  <%= button_to  post_like_path(post), remote: true do %>
+    <i class="far fa-heart"></i>
+  <% end %>
+  <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<% end %>
+<p>いいねしたユーザー</p>
+<% post.liked_users.each do |user| %>
+  <li><%= user.username %></li>
+<% end %>
+<p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+

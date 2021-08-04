@@ -1,0 +1,28 @@
+<div class="post-wrapper">
+  <div class="box B_2"> 
+    <h2>My Posted Articles</h2>
+    <% @posts.each do |post| %>
+      <p>タイトル:&ensp;<%= post.title %></p><br>
+      <p>レビュー:&ensp;<%= post.content %></p><br>
+      <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
+      <p>いいね件数:&ensp;<%= post.likes.count %></p>
+      <p>いいねしたユーザー</p>
+      <% post.liked_users.each do |user| %>
+       
+       <li><%= user.username %></li>
+       
+      <% end %>
+      <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+      <% if post.user_id == current_user.id %>
+        <%= link_to '削除', post_path(post.id), method: :delete, data: {confirm: '本当にいいですか？'} %>
+      <% end %>
+      <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+    <% end %>
+    
+    <%= paginate @posts %>
+  </div>
+</div>
+
+  
+     
+       

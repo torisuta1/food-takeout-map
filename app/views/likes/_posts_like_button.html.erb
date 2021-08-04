@@ -1,0 +1,11 @@
+<p>いいね件数:&ensp;<%= post.likes.count %></p>
+<% if current_user.already_liked?(post) %> 
+  <%= button_to  post_like_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-heart"></i>
+  <% end %>
+<% else %>
+  <%= button_to  post_like_path(post), remote: true do %>
+    <i class="far fa-heart"></i>
+  <% end %>
+<% end %>
+<p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
