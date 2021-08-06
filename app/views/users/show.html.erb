@@ -1,6 +1,7 @@
 <div class="post-wrapper">
   <div class="box B_2"> 
     <h2>ユーザー詳細</h2>
+    <%= render 'relationships/follow_button', user: @user %>
     <p>いいねしている投稿</p>
     <% @user.liked_posts.each do |post| %>
       <p>タイトル:&ensp;<%= link_to post.title, post_path(post) %></p>
