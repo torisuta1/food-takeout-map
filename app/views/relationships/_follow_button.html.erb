@@ -1,10 +1,9 @@
-
-    <% if current_user.relationships.exists?(follow_id: @user) %>
-      <%= button_to 'フォロー解除', user_relationship_path(@user), method: :delete, remote: true %>
-    <% else %>
-      <%= button_to 'フォロー', user_relationship_path(@user), remote: true %>
-    <% end %>
-    <%= link_to "フォロー:\n#{@user.followings.count}",  [@user, :followings] %>
-    <%= link_to "フォロワー:\n#{@user.followers.count}",  [@user, :followers] %>
+<% if current_user.relationships.exists?(follow_id: @user) %>
+  <%= button_to 'フォロー解除', user_relationship_path(@user), method: :delete, remote: true %>
+<% else %>
+  <%= button_to 'フォロー', user_relationship_path(@user), remote: true %>
+<% end %>
+<%= link_to "フォロー:\n#{@user.followings.count}",  [@user, :followings] %>
+<%= link_to "フォロワー:\n#{@user.followers.count}",  [@user, :followers] %>
     
 

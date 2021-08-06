@@ -1,1 +1,4 @@
 $("#follow-form-<%= @user.id %>").html("<%= j(render 'follow_button', user: @user) %>");
+<% flash.each do |type, message| %>
+  $("#flash_messages").html("<% type %> <%= message.html_safe %>")
+<% end %>
