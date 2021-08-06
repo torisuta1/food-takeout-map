@@ -11,3 +11,5 @@
     <% end %>
   <% end %>
 <% end %>
+<%= link_to "フォロー:\n#{user.followings.count}",  [@user, :followings] %>
+<%= link_to "フォロワー:\n#{user.followers.count}",  [@user, :followers] %>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   } 
   resources :users, only: [:show] do 
     resource :relationship, only: [:create, :destroy] 
+    resources :followings 
+    resources :followers 
   end
   root to: "home#index"
   resources :posts, only: [:new, :create, :destroy, :show, :index] do
@@ -17,7 +19,6 @@ Rails.application.routes.draw do
     member do 
       get 'my_post'
     end
-  resources :genres, only: [:new, :create, :index]
+    resources :genres, only: [:new, :create, :index]
   end
-    
-  end
+end
