@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',   
     passwords: 'users/passwords'
   } 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do 
+    resource :relationship, only: [:create, :destroy] 
+    resources :followings 
+    resources :followers 
+  end
   root to: "home#index"
   resources :posts, only: [:new, :create, :destroy, :show, :index] do
     resource :like, only: [:create, :destroy]
@@ -15,6 +19,6 @@ Rails.application.routes.draw do
     member do 
       get 'my_post'
     end
-  resources :genres, only: [:new, :create, :index]
-end
+    resources :genres, only: [:new, :create, :index]
+  end
 end

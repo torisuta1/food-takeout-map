@@ -1,0 +1,8 @@
+<div class="post-wrapper">
+  <div class="box B_2"> 
+    <h3>ユーザーネーム</h3>
+    <% @followings.each do |user| %>
+      <%= link_to user.username, user %><br>
+    <% end %>
+  </div>
+</div>

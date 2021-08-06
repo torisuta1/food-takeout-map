@@ -2,7 +2,7 @@
   <p>タイトル:&ensp;<%= post.title %></p><br>
   <p>レビュー:&ensp;<%= post.content %></p><br>
   <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
-  <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post) %></p><br>
+  <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user) %></p><br>
   <span id= "posts_like-button-<%= post.id %>">
     <%= render 'likes/posts_like_button', post: post %>
   </span>
