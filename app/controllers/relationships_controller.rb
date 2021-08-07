@@ -1,23 +1,27 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def create
-    if current_user.relationships.create(follow_id: params[:user_id])
-       redirect_to [:user, { id: params[:user_id] }]
-       flash[:notice] = 'ユーザーをフォローしました'
-    else
-      flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-      redirect_to [:user, { id: params[:user_id] }]
+    if Relationship.create(user_id: current_user.id, follow_id: @user.id)
+      respond_to do |format|
+        format.js { flash[:danger] = "ユーザーをフォローしました" }
+      end
+    end
+  end
+     
+  def destroy
+    @relation = Relationship.find_by(user_id: current_user.id, follow_id: @user.id)
+    if @relation.destroy
+      respond_to do |format|
+        format.js { flash[:danger] = "ユーザーのフォローを解除しました" }
+      end
     end
   end
 
-  def destroy
-    if current_user.relationships.find_by(follow_id: params[:user_id]).destroy
-      redirect_to [:user, { id: params[:user_id] }]
-      flash[:notice] = 'ユーザーのフォローを解除しました'
-    else
-      flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-      redirect_to [:user, { id: params[:user_id] }]
+  private
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
-  end
 end

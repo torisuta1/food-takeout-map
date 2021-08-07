@@ -5,7 +5,6 @@
       <span>価格帯</span><%= f.select :genre_id, [['~1500円', 1], ['1500円~', 2]], {include_blank: true} %>
       <%= f.submit :検索, name:'button', class: 'btn btn-primary' %>
     <% end %>
-
     <% if params[:button] %>
       <% if @posts == Post.all.order("created_at DESC").page(params[:page]).per(10) %>
         <p>検索条件が指定されていません、全投稿を表示します。</p>

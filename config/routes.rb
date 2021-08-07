@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   } 
   resources :users, only: [:show] do 
     resource :relationship, only: [:create, :destroy] 
-    resources :followings 
-    resources :followers 
+    resources :followings, only: [:index]
+    resources :followers, only: [:index]
   end
   root to: "home#index"
   resources :posts, only: [:new, :create, :destroy, :show, :index] do

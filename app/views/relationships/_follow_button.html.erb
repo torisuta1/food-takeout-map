@@ -1,15 +1,9 @@
-<% if user_signed_in? && current_user != user %> 
- <% if current_user.relationships.exists?(follow_id: user.id) %>
-    <%= form_with model: @relationship, url: user_relationship_path(user), method: :delete do |f| %>
-      <% f.hidden_field :follow_id, value: user.id %>
-      <% f.submit "フォロー解除" %>
-    <% end %>
-  <% else %>
-    <%= form_with model: @set_relationship, url: user_relationship_path(user) do |f| %>
-      <% f.hidden_field :follow_id, value: user.id %>
-      <% f.submit "フォロー" %>
-    <% end %>
-  <% end %>
+<% if current_user.relationships.exists?(follow_id: @user) %>
+  <%= button_to 'フォロー解除', user_relationship_path(@user), method: :delete, remote: true %>
+<% else %>
+  <%= button_to 'フォロー', user_relationship_path(@user), remote: true %>
 <% end %>
-<%= link_to "フォロー:\n#{user.followings.count}",  [@user, :followings] %>
-<%= link_to "フォロワー:\n#{user.followers.count}",  [@user, :followers] %>
+<%= link_to "フォロー:\n#{@user.followings.count}",  [@user, :followings] %>
+<%= link_to "フォロワー:\n#{@user.followers.count}",  [@user, :followers] %>
+    
+
