@@ -2,7 +2,7 @@
   <div class="box B_2"> 
     <h2>My Posted Articles</h2>
     <% @posts.each do |post| %>
-      <p>タイトル:&ensp;<%= post.title %></p><br>
+      <p>店名:&ensp;<%= post.title %></p><br>
       <p>レビュー:&ensp;<%= post.content %></p><br>
       <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
       <p>いいね件数:&ensp;<%= post.likes.count %></p>
