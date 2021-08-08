@@ -13,7 +13,7 @@
     <% end %>
     <p>いいねしている投稿</p>
     <% @user.liked_posts.each do |post| %>
-      <p>タイトル:&ensp;<%= link_to post.title, post_path(post) %></p>
+      <p>店名:&ensp;<%= link_to post.title, post_path(post) %></p>
     <% end %>
     <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <p>ユーザーネーム:&ensp;<%= @user.username %><br></p>
