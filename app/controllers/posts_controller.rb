@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      if params[:image_files][:file].present?
+      if params[:image_files].present?
         params[:image_files][:file].each do |a|
           @image_file = @post.images.create!(image: a, post_id: @post.id)
         end
