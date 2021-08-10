@@ -318,10 +318,14 @@ button{
 }
 
 // いいねユーザーリスト
-  .post-wrapper li {
-    list-style: none;
-   }
+.post-wrapper li {
+  list-style: none;
+}
 
+  //  flashメッセージ
+.alert {
+  margin-bottom: 0 !important;
+}
 
 
     
