@@ -4,6 +4,11 @@
     <% @posts.each do |post| %>
       <p>店名:&ensp;<%= post.title %></p><br>
       <p>レビュー:&ensp;<%= post.content %></p><br>
+      <% if post.images.present? %>
+        <% post.images.each do |image| %>
+          <%= image_tag image.image.url %>  
+        <% end %>
+      <% end %>
       <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
       <p>いいね件数:&ensp;<%= post.likes.count %></p>
       <p>いいねしたユーザー</p>
