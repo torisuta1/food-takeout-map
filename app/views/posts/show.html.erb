@@ -2,6 +2,9 @@
   <div class="box B_2"> 
     <p>店名:&ensp;<%= @post.title %></p><br>
     <p>レビュー:&ensp;<%= @post.content %></p><br>
+    <% @post.images.each do |image| %>  
+      <%= image_tag image.image.url %>  
+    <% end %>
     <p>投稿日:&ensp;<%= @post.created_at.to_s(:datetime_jp) %></p><br>
     <p>投稿者:&ensp;<%= link_to @post.user.username, user_path(@post) %></p><br>
     <p>いいねしたユーザー</p>

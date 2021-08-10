@@ -8,12 +8,18 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.images.build
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      if params[:image_files][:file].present?
+        params[:image_files][:file].each do |a|
+          @image_file = @post.images.create!(image: a, post_id: @post.id)
+        end
+      end
       flash[:notice] = "投稿が完了しました"
       redirect_to root_path
     else
@@ -45,7 +51,7 @@ class PostsController < ApplicationController
 private
 
   def post_params 
-    params.require(:post).permit(:title, :content, :genre_id)
+    params.require(:post).permit(:title, :content, :genre_id, images_attributes: [:image])
   end
 
 end
