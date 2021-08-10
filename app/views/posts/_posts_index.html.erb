@@ -2,7 +2,7 @@
   <p>店名:&ensp;<%= post.title %></p><br>
   <p>レビュー:&ensp;<%= post.content %></p><br>
   <% if post.images.present? %>
-    <% post.images.each do |image| %><br>
+    <% post.images.each do |image| %>
       <%= image_tag image.image.url %>  
     <% end %>
   <% end %>
