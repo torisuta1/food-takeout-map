@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   } 
   resources :users, only: [:show] do 
+    namespace :admin do 
+      resources :users, only: [:destroy, :index]
+    end
     resource :relationship, only: [:create, :destroy] 
     resources :followings, only: [:index]
     resources :followers, only: [:index]

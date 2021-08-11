@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search]
+  before_action :set_post, only: [:destroy]
+  before_action :if_not_admin_or_current_in_user_posts, only: [:destroy]
   
 
   def index
@@ -29,7 +31,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to my_post_post_path(current_user)
     flash[:notice] = "投稿が削除されました"
@@ -54,4 +55,14 @@ private
     params.require(:post).permit(:title, :content, :genre_id, images_attributes: [:image])
   end
 
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def if_not_admin_or_current_in_user_posts
+    unless current_user.admin? || @post.user_id == current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    end
+  end
 end
