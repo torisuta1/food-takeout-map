@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
   def create
     if Relationship.create(user_id: current_user.id, follow_id: @user.id)
       respond_to do |format|
-        format.js { flash[:danger] = "ユーザーをフォローしました" }
+        format.js { flash[:alert] = "ユーザーをフォローしました" }
       end
     end
   end
@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
     @relation = Relationship.find_by(user_id: current_user.id, follow_id: @user.id)
     if @relation.destroy
       respond_to do |format|
-        format.js { flash[:danger] = "ユーザーのフォローを解除しました" }
+        format.js { flash[:alert] = "ユーザーのフォローを解除しました" }
       end
     end
   end

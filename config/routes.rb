@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   } 
   resources :users, only: [:show] do 
     namespace :admin do 
-      resources :users, only: [:destroy, :show, :index]
+      resources :users, only: [:destroy, :index]
     end
     resource :relationship, only: [:create, :destroy] 
     resources :followings, only: [:index]
