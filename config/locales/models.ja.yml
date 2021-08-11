@@ -2,8 +2,18 @@ ja:
   activerecord:
     attributes:
       user:
+        username: ユーザーネーム
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
         current_password: 現在のパスワード
+        agreement: 同意 
+
+
+    errors:
+      models:
+        user:
+          attributes:
+            agreement: 
+              accepted: いただけない場合利用できません

@@ -327,7 +327,23 @@ button{
   margin-bottom: 0 !important;
 }
 
+// 利用規約、プライバシーポリシー、同意ボックス
+.terms_and_policy {
+  font-size: 20px;
+  color:#333;
+  background-color: #EEE;
+  text-align: center;
+  height: 75px;
+  
+}
 
+.agreement {
+  position: relative;
+  right: 48%;
+  top: 20px;
+  transform: scale(1.5);
+
+}
     
     
     
