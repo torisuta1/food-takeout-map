@@ -60,5 +60,17 @@
     <%= render 'layouts/flashes' %>
     
     <%= yield %>
+
+    <footer>
+      <div class="row">
+        <div class="px-0">
+          <div class= "terms_and_policy px-0">
+          <p>&copy;2021FoodTakeoutMap</p>
+            <%= link_to '利用規約', page_path('terms') %>
+            <%= link_to 'プライバシーポリシー', page_path('privacy_policy') %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
