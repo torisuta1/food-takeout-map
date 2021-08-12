@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',   
     passwords: 'users/passwords'
   } 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
   resources :users, only: [:show] do 
     namespace :admin do 
       resources :users, only: [:destroy, :index]
@@ -13,7 +16,7 @@ Rails.application.routes.draw do
     resources :followings, only: [:index]
     resources :followers, only: [:index]
   end
-  root to: "home#index"
+  root to: "homes#index"
   resources :posts, only: [:new, :create, :destroy, :show, :index] do
     resource :like, only: [:create, :destroy]
     collection do 
