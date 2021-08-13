@@ -20,24 +20,24 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav d-flex flex-row-reverse ms-auto  mb-2 mb-lg-0 text-primary">
               <% if user_signed_in? %> 
                 <li class="nav-item">
                   <strong><%= current_user.username %>としてログイン中です</strong>
-                  <%= link_to "マイページ", edit_user_registration_path, class: "nav-link active" %> 
+                  <%= link_to "マイページ", user_path(current_user), class: "nav-link active text-primary" %> 
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active" %> 
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active text-primary" %> 
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "サインアップ", new_user_registration_path, class: "nav-link active" %> 
+                  <%= link_to "サインアップ", new_user_registration_path, class: "nav-link active text-primary" %> 
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: "nav-link active" %> 
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link active text-primary" %> 
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "nav-link active" %>
+                  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "nav-link active text-primary" %>
                 </li>
               <% end %>
                 <li class="nav-item dropdown">
@@ -45,19 +45,17 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <% if user_logged_in? && current_user.admin?%>
-                    <li><%= link_to "ユーザー一覧（管理者）", user_admin_users_path(current_user), class: "dropdown-item" %></li> 
+                    <li><%= link_to "ユーザー一覧（管理者）", user_admin_users_path(current_user), class: "dropdown-item text-primary" %></li> 
                   <% end %>
-                    <li><%= link_to "検索", search_posts_path, class: "dropdown-item" %></li>
-                    <li><%= link_to "一覧", posts_path, class: "dropdown-item" %></li>
-                    <li><%= link_to "投稿する", new_post_path, class: "dropdown-item" %></li>
-                    <li><%= link_to "マイ投稿", my_post_post_path(current_user), class: "dropdown-item" if user_signed_in? %></li> 
+                    <li><%= link_to "検索", search_posts_path, class: "dropdown-item text-primary" %></li>
+                    <li><%= link_to "一覧", posts_path, class: "dropdown-item text-primary" %></li>
+                    <li><%= link_to "投稿する", new_post_path, class: "dropdown-item text-primary" %></li>
+                    <li><%= link_to "マイ投稿", my_post_post_path(current_user), class: "dropdown-item text-primary" if user_signed_in? %></li> 
+                    <li><%= link_to "ユーザー編集", edit_user_registration_path, class: "dropdown-item text-primary" if user_signed_in? %></li> 
+                    <li><%= link_to "ホーム", root_path, class: "dropdown-item text-primary" %></li>
                   </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </nav>

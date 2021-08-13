@@ -8,7 +8,7 @@
   <% end %>
   <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
   <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user) %></p><br>
-  <% if current_user.admin? %>
+  <% if user_logged_in? && current_user.admin? %>
     <%= link_to '削除', post_path(post.id), method: :delete, data: {confirm: '本当にいいですか？'} %>
   <% end %>
   <span id= "posts_like-button-<%= post.id %>">
