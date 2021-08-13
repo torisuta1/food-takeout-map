@@ -24,7 +24,7 @@
               <% if user_signed_in? %> 
                 <li class="nav-item">
                   <strong><%= current_user.username %>としてログイン中です</strong>
-                  <%= link_to "マイページ", edit_user_registration_path, class: "nav-link active text-primary" %> 
+                  <%= link_to "マイページ", user_path(current_user), class: "nav-link active text-primary" %> 
                 </li>
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active text-primary" %> 
@@ -51,6 +51,8 @@
                     <li><%= link_to "一覧", posts_path, class: "dropdown-item text-primary" %></li>
                     <li><%= link_to "投稿する", new_post_path, class: "dropdown-item text-primary" %></li>
                     <li><%= link_to "マイ投稿", my_post_post_path(current_user), class: "dropdown-item text-primary" if user_signed_in? %></li> 
+                    <li><%= link_to "ユーザー編集", edit_user_registration_path, class: "dropdown-item text-primary" if user_signed_in? %></li> 
+                    <li><%= link_to "ホーム", root_path, class: "dropdown-item text-primary" %></li>
                   </ul>
                 </li>
             </ul>

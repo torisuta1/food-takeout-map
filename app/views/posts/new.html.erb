@@ -6,11 +6,12 @@
     <%= f.label :レビュー %>
     <%= f.text_area :content, size: "50x20"%>
 
+    <div class= "post-image">
     <%= f.label :画像 %>
     <%= f.fields_for :images do |i| %>
       <%= i.file_field :image, multiple: true,  name: "image_files[file][]" %>
     <% end %>
-
+      </div>
     <%= f.label :genre_id, "価格帯" %>
     <%= f.select :genre_id, [['~1500円',1 ], ['1500円~', 2]], { include_blank: true}, {class: "genre_tag"} %>
 

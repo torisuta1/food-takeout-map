@@ -10,6 +10,9 @@
       <div id= "follow-form-<%= @user.id %>">
         <%= render 'relationships/follow_button', user: @user %>
       </div>
+    <% else %>
+      <%= link_to "フォロー:\n#{@user.followings.count}",  [@user, :followings] %>
+      <%= link_to "フォロワー:\n#{@user.followers.count}",  [@user, :followers] %>
     <% end %>
     <p>いいねしている投稿</p>
     <% @user.liked_posts.each do |post| %>

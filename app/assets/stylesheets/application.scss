@@ -101,16 +101,18 @@ body {
   min-width: 320px;
   max-width: 475px;
   background: #fff;
-  position: relative;
-  margin-top: 330px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  margin: 0 auto;
+  // position: relative;
+  // margin-top: 50px;
+  // margin-bottom: 50px;
+  // top: 400px;
+  // left: 50%;
+  // transform: translate(-50%,-50%);
   box-shadow: 0px 2px 5px rgba(0,0,0,.25);
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
+  // -webkit-transform: translate(-50%,-50%);
+  // -moz-transform: translate(-50%,-50%);
+  // -o-transform: translate(-50%,-50%);
+  // -ms-transform: translate(-50%,-50%);
 
   @media(max-width: 40em){
     width: 95%;
@@ -187,22 +189,23 @@ body {
   }
 
   // マイページ
-  .my_page_contents {
+.my_page_contents {
     width: 40%;
     height: 100%;
     min-width: 320px;
     max-width: 475px;
     background: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 100px;
-    transform: translate(-50%,-50%);
+    margin: 0 auto;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // margin-top: 100px;
+    // transform: translate(-50%,-50%);
     box-shadow: 0px 2px 5px rgba(0,0,0,.25);
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
+    // -webkit-transform: translate(-50%,-50%);
+    // -moz-transform: translate(-50%,-50%);
+    // -o-transform: translate(-50%,-50%);
+    // -ms-transform: translate(-50%,-50%);
   
   @media(max-width: 599px){
     width: 95%;
@@ -235,6 +238,10 @@ body {
     font-weight: 200;
   }
     
+  h3 {
+    text-align: center;
+  }
+
   input {
     display: block;
     margin: auto auto;
@@ -344,6 +351,8 @@ button{
   transform: scale(1.5);
 
 }
+
+
     
     
     

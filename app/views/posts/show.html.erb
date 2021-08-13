@@ -6,7 +6,7 @@
       <%= image_tag image.image.url %>  
     <% end %>
     <p>投稿日:&ensp;<%= @post.created_at.to_s(:datetime_jp) %></p><br>
-    <p>投稿者:&ensp;<%= link_to @post.user.username, user_path(@post) %></p><br>
+    <p>投稿者:&ensp;<%= link_to @post.user.username, user_path(@post.user) %></p><br>
     <p>いいねしたユーザー</p>
     <div id= "like-button-<%= @post.id %>">
       <%= render 'likes/like_button', post: @post, user: @user %>
