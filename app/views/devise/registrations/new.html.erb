@@ -5,7 +5,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label :ユーザーネーム %><br />
+      <%= f.label :username %><br />
       <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
     </div>
 
@@ -27,7 +27,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <%= f.check_box :agreement, as: :boolean, checked:false, class: "agreement" %>
+    <%= f.check_box :agreement, as: :boolean, checked:false, id: 'agreement', class: "agreement" %>
     <p><%= link_to '利用規約', page_path('terms') %>と
     <%= link_to 'プライバシーポリシー', page_path('privacy_policy') %>に同意する</p>
     
