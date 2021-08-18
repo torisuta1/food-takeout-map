@@ -25,13 +25,25 @@ RSpec.describe 'sign_up_page' do
 
   context 'password' do 
     it 'existing Password' do
-      expect(page).to have_content 'パスワード'
+      expect(page).to have_content 'パスワード (6文字以上)'
     end
   end
 
   context 'password confirmation' do 
     it 'existing Password confirmation' do
-      expect(page).to have_content 'パスワード確認'
+      expect(page).to have_content '確認用パスワード'
+    end
+  end
+
+  context 'check_box' do
+    it 'existing check_box' do
+      expect(page).to have_field ('')
+    end
+  end
+
+  context 'agree with the text' do 
+    it 'existing agree with the text' do
+      expect(page).to have_content '利用規約と プライバシーポリシーに同意する'
     end
   end
 

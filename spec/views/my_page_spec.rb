@@ -8,8 +8,8 @@ RSpec.describe 'my_page' do
     visit new_user_session_path
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
-    click_on 'ログイン'
-    click_on 'マイページ'
+    click_button 'ログイン'
+    click_on 'ユーザー編集'
 
   end
 
@@ -33,19 +33,25 @@ RSpec.describe 'my_page' do
 
   context 'password' do 
     it 'existing Password' do
-      expect(page).to have_content 'パスワード'
+      expect(page).to have_content 'パスワード (変更希望がなければ空欄でも可能です)'
     end
   end
 
   context 'password confirmation' do 
     it 'existing Password confirmation' do
-      expect(page).to have_content 'パスワード確認'
+      expect(page).to have_content '確認用パスワード'
     end
   end
 
   context 'current password' do 
     it 'existing current Password' do
-      expect(page).to have_content '現在のパスワード'
+      expect(page).to have_content '現在のパスワード (変更を反映するには必要です)'
+    end
+  end
+
+  context 'profile' do 
+    it 'existing profile' do
+      expect(page).to have_content 'プロフィール'
     end
   end
 
