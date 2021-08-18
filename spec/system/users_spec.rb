@@ -135,7 +135,7 @@ RSpec.describe 'User', type: :system do
       it 'successfully logged in' do
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         fill_in 'パスワード', with: 'password'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq root_path
         expect(page).to have_content 'ログインしました。'
       end 
@@ -145,7 +145,7 @@ RSpec.describe 'User', type: :system do
       it 'login fails' do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: 'password'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -155,7 +155,7 @@ RSpec.describe 'User', type: :system do
       it 'login fails' do
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         fill_in 'パスワード', with: ''
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -163,7 +163,7 @@ RSpec.describe 'User', type: :system do
 
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_button 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -186,7 +186,7 @@ RSpec.describe 'User', type: :system do
       it 'can not log in' do
         fill_in 'メールアドレス', with: 'hogehoge1@example.com'
         fill_in 'パスワード', with: 'password2'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレスの本人確認が必要です。'
       end 
@@ -196,7 +196,7 @@ RSpec.describe 'User', type: :system do
       it 'can not log in' do
         fill_in 'メールアドレス', with: 'hogehoge2@example.com'
         fill_in 'パスワード', with: 'password2'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -221,8 +221,8 @@ RSpec.describe 'User', type: :system do
       it 'transmission fails' do
         fill_in 'メールアドレス', with: ''
         click_on 'パスワードリセットメールを送信'
-        expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 件のエラーが発生したため処理されませんでした:'
+        expect(current_path).to eq new_user_password_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
 
@@ -230,21 +230,21 @@ RSpec.describe 'User', type: :system do
       it 'transmission fails' do
         fill_in 'メールアドレス', with: 'test@example.com'
         click_on 'パスワードリセットメールを送信'
-        expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 件のエラーが発生したため処理されませんでした:'
+        expect(current_path).to eq new_user_password_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_link 'log_in'
         expect(current_path).to eq new_user_session_path
       end 
     end
       
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_button 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -258,7 +258,7 @@ RSpec.describe 'User', type: :system do
 
     context 'send change email' do 
       it 'successful change' do 
-        ActionMailer::Base.deliverie
+        ActionMailer::Base.deliveries
         user.confirm
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         click_on 'パスワードリセットメールを送信'
@@ -297,7 +297,7 @@ RSpec.describe 'User', type: :system do
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
@@ -372,7 +372,7 @@ RSpec.describe 'User', type: :system do
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq new_user_session_path
       end 
     end
@@ -400,7 +400,7 @@ RSpec.describe 'User', type: :system do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
-      click_on 'ログイン'
+      click_button 'ログイン'
       click_on 'マイページ'
     end
 
