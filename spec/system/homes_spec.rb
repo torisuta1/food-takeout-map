@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Home', type: :system do
-  fdescribe 'when not logged in' do 
-    before do 
-      visit root_path
-    end
+  before do 
+    visit root_path
+  end
 
+  describe 'when not logged in' do 
     context 'guest_log_in' do 
       it 'guest login is available' do 
         click_link 'ゲストログイン（閲覧用）'
@@ -71,6 +71,47 @@ RSpec.describe 'Home', type: :system do
       it 'privacy policy is available' do 
         click_link 'プライバシーポリシー'
         expect(page).to have_selector 'h3', text: 'プライバシーポリシー'
+      end
+    end
+  end
+
+  describe 'when logged in' do 
+    before do 
+      visit root_path
+      click_link 'ゲストログイン（閲覧用）'
+    end 
+
+    context 'log_out' do 
+      it 'existing ログアウト' do 
+        expect(page).to have_selector 'li', text: 'ログアウト'
+      end
+    end
+
+    context 'my_page' do 
+      it 'existing マイページ' do 
+        expect(page).to have_selector 'li', text: 'マイページ'
+      end
+    end
+
+    context 'log_out' do 
+      it 'existing ログアウト' do 
+        expect(page).to have_selector 'li', text: 'ログアウト'
+      end
+    end
+
+    context 'my_posts' do 
+      it 'my_posts is available' do 
+        click_on 'navbarDropdown'
+        click_link 'マイ投稿'
+        expect(page).to have_selector 'h2', text: 'My Posted Articles'
+      end
+    end
+
+    context 'user_edit' do 
+      it 'user_edit is available' do 
+        click_on 'navbarDropdown'
+        click_link 'ユーザー編集'
+        expect(current_path).to eq edit_user_registration_path
       end
     end
   end
