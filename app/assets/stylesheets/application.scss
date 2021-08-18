@@ -12,10 +12,19 @@ body {
 }
 
 // ホーム画面
+header {
+  position: fixed;
+  top: 0;
+  z-index: 30;
+  width: 100%;
+  background-color:rgba(240, 248, 255, 0.8);
+  height: 60px;
+}
+
 .home-top {
     background-image: url(4036048_m.jpg);
     background-size: cover;
-    background-color: rgba(255,255,255,0.4);
+    background-color: hsla(0, 0%, 100%, 0.438);
     background-blend-mode: lighten;
     height: 1000px;
     text-align: center;
@@ -101,7 +110,8 @@ body {
   min-width: 320px;
   max-width: 475px;
   background: #fff;
-  margin: 0 auto;
+  margin: 60px auto 0 auto;
+
   // position: relative;
   // margin-top: 50px;
   // margin-bottom: 50px;
@@ -117,7 +127,7 @@ body {
   @media(max-width: 40em){
     width: 95%;
     position: relative;
-    margin: 0 auto 0 auto;
+    margin: 60px auto 0 auto;
     left: 0%;
     transform: translate(0%,0%);
   }
@@ -195,7 +205,8 @@ body {
     min-width: 320px;
     max-width: 475px;
     background: #fff;
-    margin: 0 auto;
+    margin: 60px auto 0 auto;
+    
     // position: absolute;
     // top: 50%;
     // left: 50%;
@@ -288,6 +299,8 @@ body {
 	text-align: center;
   color: rgba(27, 79, 114, 0.6);
 	background: #e9ebee;
+  margin: 60px auto 0 auto;
+
   
 
   .box{
@@ -338,7 +351,7 @@ button{
 .terms_and_policy {
   font-size: 20px;
   color:#333;
-  background-color: #EEE;
+  background-color: rgba(230, 230, 250, 0.5);
   text-align: center;
   
   
