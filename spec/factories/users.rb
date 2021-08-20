@@ -5,15 +5,22 @@ FactoryBot.define do
     password {"password"}
     password_confirmation {"password"}
     agreement {true}
-  
-  
-  
+  end
 
-  factory :other_user do
+  factory :other_user, class: 'User' do
     username {"hoge2"}
     sequence(:email) { |n| "hogehoge#{n}@example.com"}
     password {"password2"}
     password_confirmation {"password2"}
+    agreement {true}
   end
-end
+
+  factory :hoge_user, class: 'User' do
+    username {"hoge3"}
+    sequence(:email) { |n| "hogefuga1@example.com"}
+    password {"password2"}
+    password_confirmation {"password2"}
+    agreement {true}
+    confirmed_at {Time.now}
+  end
 end

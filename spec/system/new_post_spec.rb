@@ -31,7 +31,7 @@ RSpec.describe 'New_post_page', type: :system do
       end
     end
 
-    fcontext 'review not into the force' do 
+    context 'review not into the force' do 
       it 'successful submission' do 
         fill_in 'new-store-name', with: 'test'
         fill_in 'new-review', with: ''
