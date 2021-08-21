@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'association' do
+    it 'has_many posts' do
+      expect(Genre.reflect_on_association(:posts).macro).to eq :has_many
+    end
+  end
 end

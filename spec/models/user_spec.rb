@@ -58,4 +58,22 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
   end
+
+  context 'has_many' do 
+    it 'has_many posts' do
+      expect(User.reflect_on_association(:posts).macro).to eq :has_many
+    end
+  end
+
+  context 'has_many' do 
+    it 'has_many likes' do
+      expect(User.reflect_on_association(:likes).macro).to eq :has_many
+    end
+  end
+
+  context 'has_many' do 
+    it 'has_many Relationships' do
+      expect(User.reflect_on_association(:relationships).macro).to eq :has_many
+    end
+  end
 end

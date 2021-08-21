@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Image, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'association' do
+    it 'belongs_to post' do
+      expect(Image.reflect_on_association(:post).macro).to eq :belongs_to
+    end
+  end
 end
