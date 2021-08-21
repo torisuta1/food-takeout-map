@@ -1,18 +1,18 @@
 <div class="registration_contents">
   <%= form_with model: @post do |f| %>
-    <%= f.label :店名 %>
-    <%= f.text_field :title %>
+    <%= f.label :"店名(必須)" %>
+    <%= f.text_field :title, id: 'new-store-name' %>
 
     <%= f.label :レビュー %>
-    <%= f.text_area :content, size: "50x20"%>
+    <%= f.text_area :content, id: 'new-review', size: "50x20"%>
 
     <div class= "post-image">
-    <%= f.label :画像 %>
-    <%= f.fields_for :images do |i| %>
-      <%= i.file_field :image, multiple: true,  name: "image_files[file][]" %>
-    <% end %>
-      </div>
-    <%= f.label :genre_id, "価格帯" %>
+      <%= f.label :画像 %>
+      <%= f.fields_for :images do |i| %>
+        <%= i.file_field :image, multiple: true, id: 'new-post-image', name: "image_files[file][]" %>
+      <% end %>
+    </div>
+    <%= f.label :genre_id, "価格帯(必須）" %>
     <%= f.select :genre_id, [['~1500円',1 ], ['1500円~', 2]], { include_blank: true}, {class: "genre_tag"} %>
 
     <%= f.submit "投稿", class: "actions"  %>

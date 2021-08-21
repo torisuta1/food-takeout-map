@@ -1,8 +1,8 @@
 <div class="post-wrapper">
   <div class="box B_2"> 
     <%= form_with url: search_posts_path, method: :get, class: 'search_form' do |f| %>
-      <span>検索ワード</span><%= f.text_field :search %>
-      <span>価格帯</span><%= f.select :genre_id, [['~1500円', 1], ['1500円~', 2]], {include_blank: true} %>
+      <span>検索ワード</span><%= f.text_field :search, id: 'search-words' %>
+      <span>価格帯</span><%= f.select :genre_id, [['~1500円', 1], ['1500円~', 2]], {include_blank: true}, id: 'genre-select' %>
       <%= f.submit :検索, name:'button', class: 'btn btn-primary' %>
     <% end %>
     <% if params[:button] %>

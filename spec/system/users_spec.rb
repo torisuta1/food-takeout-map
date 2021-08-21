@@ -20,7 +20,8 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'test@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: 'password'
-        click_on 'サインアップ'
+        check 'agreement'
+        click_button 'サインアップ'
         expect(current_path).to eq root_path
         expect(page).to have_content '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
       end 
@@ -32,8 +33,9 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: ''
         fill_in '確認用パスワード', with: ''
-        click_on 'サインアップ'
-        expect(page).to have_content '3 件のエラーが発生したため USER は保存されませんでした:'
+        check 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content '3 件のエラーが発生したため処理されませんでした:'
       end 
     end
 
@@ -43,8 +45,9 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'test@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: 'password'
-        click_on 'サインアップ'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        check 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
@@ -54,8 +57,9 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: 'password'
-        click_on 'サインアップ'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        check 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
@@ -65,8 +69,9 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'test@example.com'
         fill_in 'パスワード', with: ''
         fill_in '確認用パスワード', with: 'password'
-        click_on 'サインアップ'
-        expect(page).to have_content '2 件のエラーが発生したため USER は保存されませんでした:'
+        check 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content '2 件のエラーが発生したため処理されませんでした:'
       end 
     end
 
@@ -76,14 +81,27 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'test@example.com'
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: ''
-        click_on 'サインアップ'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        check 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
+      end 
+    end
+
+    context 'if do not agree' do 
+      it 'Registration fails' do 
+        fill_in 'ユーザーネーム', with: 'test'
+        fill_in 'メールアドレス', with: 'test@example.com'
+        fill_in 'パスワード', with: 'password'
+        fill_in '確認用パスワード', with: 'password'
+        uncheck 'agreement'
+        click_button 'サインアップ'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_link 'log_in'
         expect(current_path).to eq new_user_session_path
       end 
     end
@@ -117,7 +135,7 @@ RSpec.describe 'User', type: :system do
       it 'successfully logged in' do
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         fill_in 'パスワード', with: 'password'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq root_path
         expect(page).to have_content 'ログインしました。'
       end 
@@ -127,7 +145,7 @@ RSpec.describe 'User', type: :system do
       it 'login fails' do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: 'password'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -137,7 +155,7 @@ RSpec.describe 'User', type: :system do
       it 'login fails' do
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         fill_in 'パスワード', with: ''
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -145,7 +163,7 @@ RSpec.describe 'User', type: :system do
 
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -168,7 +186,7 @@ RSpec.describe 'User', type: :system do
       it 'can not log in' do
         fill_in 'メールアドレス', with: 'hogehoge1@example.com'
         fill_in 'パスワード', with: 'password2'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレスの本人確認が必要です。'
       end 
@@ -178,7 +196,7 @@ RSpec.describe 'User', type: :system do
       it 'can not log in' do
         fill_in 'メールアドレス', with: 'hogehoge2@example.com'
         fill_in 'パスワード', with: 'password2'
-        click_on 'ログイン'
+        click_button 'ログイン'
         expect(current_path).to eq user_session_path
         expect(page).to have_content 'メールアドレス もしくはパスワードが不正です。'
       end 
@@ -203,8 +221,8 @@ RSpec.describe 'User', type: :system do
       it 'transmission fails' do
         fill_in 'メールアドレス', with: ''
         click_on 'パスワードリセットメールを送信'
-        expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(current_path).to eq new_user_password_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
 
@@ -212,21 +230,21 @@ RSpec.describe 'User', type: :system do
       it 'transmission fails' do
         fill_in 'メールアドレス', with: 'test@example.com'
         click_on 'パスワードリセットメールを送信'
-        expect(current_path).to eq user_password_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(current_path).to eq new_user_password_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_link 'log_in'
         expect(current_path).to eq new_user_session_path
       end 
     end
       
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -240,7 +258,7 @@ RSpec.describe 'User', type: :system do
 
     context 'send change email' do 
       it 'successful change' do 
-        ActionMailer::Base.deliverie
+        ActionMailer::Base.deliveries
         user.confirm
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         click_on 'パスワードリセットメールを送信'
@@ -273,20 +291,20 @@ RSpec.describe 'User', type: :system do
         fill_in '新パスワード', with: ''
         fill_in 'パスワード確認', with: ''
         click_on 'パスワード変更'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_link 'log_in'
         expect(current_path).to eq new_user_session_path
       end 
     end
           
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -317,7 +335,7 @@ RSpec.describe 'User', type: :system do
         fill_in '新パスワード', with: 'new-password'
         fill_in 'パスワード確認', with: 'new-password'
         click_on 'パスワード変更'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
   end 
@@ -326,13 +344,14 @@ RSpec.describe 'User', type: :system do
     before do 
       visit user_confirmation_path            
     end
+
     context 'normal input' do 
       it 'transmission successful' do
         user
         fill_in 'メールアドレス', with: 'hoge1@example.com'
         click_on '認証メール再送'
         expect(current_path).to eq new_user_session_path
-        expect(page).to have_content 'あなたのメールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。'
+        expect(page).to have_content 'アカウントの有効化について数分以内にメールでご連絡します。'
       end
     end
         
@@ -340,7 +359,7 @@ RSpec.describe 'User', type: :system do
       it 'resend fails' do
         fill_in 'メールアドレス', with: ''
         click_on '認証メール再送'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
@@ -348,20 +367,20 @@ RSpec.describe 'User', type: :system do
       it 'resend fails' do
         fill_in 'メールアドレス', with: 'test@example.com'
         click_on '認証メール再送'
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end 
     end
 
     context 'transition to the login screen' do
       it 'go to the login screen' do
-        click_on 'ログイン'
+        click_link 'log_in'
         expect(current_path).to eq new_user_session_path
       end 
     end
             
     context 'go to the sign-up screen' do
       it 'go to the sign-up screen' do
-        click_on 'サインアップ'
+        click_link 'sign_up'
         expect(current_path).to eq new_user_registration_path
       end 
     end
@@ -374,7 +393,7 @@ RSpec.describe 'User', type: :system do
     end
   end
 
-  describe 'about my_page' do 
+  describe 'about user_edit' do 
     let(:user) {create(:user,email:"test@example.com")}
 
     before do 
@@ -382,8 +401,9 @@ RSpec.describe 'User', type: :system do
       visit new_user_session_path
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
-      click_on 'ログイン'
-      click_on 'マイページ'
+      click_button 'ログイン'
+      click_on 'navbarDropdown'
+      click_link 'ユーザー編集'
     end
 
     context 'normal input' do 
@@ -407,8 +427,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: 'new-password'
         fill_in '現在のパスワード', with: 'password'
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'
       end
     end
 
@@ -420,8 +440,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: 'new-password'
         fill_in '現在のパスワード', with: 'password'
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'    
       end
     end
    
@@ -433,8 +453,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: 'new-password'
         fill_in '現在のパスワード', with: 'password'
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '2 件のエラーが発生したため USER は保存されませんでした:'
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content '2 件のエラーが発生したため処理されませんでした:'
       end
     end
 
@@ -446,8 +466,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: ''
         fill_in '現在のパスワード', with: 'password'
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'    
       end
     end
 
@@ -472,8 +492,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: 'new-password'
         fill_in '現在のパスワード', with: ''
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'    
       end
     end
 
@@ -485,8 +505,8 @@ RSpec.describe 'User', type: :system do
         fill_in '確認用パスワード', with: 'new-password'
         fill_in '現在のパスワード', with: ''
         click_on '更新'
-        expect(current_path).to eq user_registration_path
-        expect(page).to have_content '1 件のエラーが発生したため USER は保存されませんでした:'    
+        expect(current_path).to eq edit_user_registration_path
+        expect(page).to have_content 'エラーが発生したため処理されませんでした:'    
       end
     end
 
