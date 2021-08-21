@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'My_post', type: :system do
-  fdescribe 'my_post' do 
+  describe 'my_post' do 
     let!(:post) {create(:post)}
     let!(:post3) {create(:post3)}
 
