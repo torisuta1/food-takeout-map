@@ -119,15 +119,15 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = { protocol: 'https',host:'food-takeout-map.herokuapp.com'}
+  config.action_mailer.default_url_options = { protocol: 'https',host:'food-takeout-map.work'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true,
   :address => "smtp.gmail.com",
   :port => 587,
   :domain => 'smtp.gmail.com',
-  :user_name => ENV['WELCOME_MAILER_ADDRESS'], #gmailアドレス
-  :password =>  ENV['WELCOME_MAILER_PASSWORD'], #gmailパスワード
+  :user_name => <%= Rails.application.credentials.aws[:mail_address] %>, #gmailアドレス
+  :password =>  <%= Rails.application.credentials.aws[:mail_password] %>, #gmailパスワード
   :authentication => 'login',
 }
 end
