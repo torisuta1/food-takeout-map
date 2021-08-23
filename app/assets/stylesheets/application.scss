@@ -28,7 +28,12 @@ header {
     background-blend-mode: lighten;
     height: 1000px;
     text-align: center;
+
+  @media only screen and (max-width: 768px) {
+       font-size:10px; 
+    }
     
+
   h1 {
     color: #9F9;
     font-size: 4em;
@@ -43,7 +48,11 @@ header {
 }
 
     .service-contents {
-     background-color: #CFF;
+      background-color: #CFF;
+
+    @media only screen and (max-width: 768px) {
+      font-size:14px; 
+    }
      
       h2 {
         color: #BAD3FF;
@@ -96,6 +105,11 @@ header {
       border: 5px solid #39F;
       height: 400px;
       position: relative;
+
+    @media only screen and (max-width: 768px) {
+      height:350px;
+      font-size: 11px;
+    }
     }
 
     strong {
@@ -300,6 +314,12 @@ header {
   color: rgba(27, 79, 114, 0.6);
 	background: #e9ebee;
   margin: 60px auto 0 auto;
+  @media screen and (max-width: 640px) {
+    img {
+      width: 160px;
+      height: 160px;
+    }
+  }
 
   
 
