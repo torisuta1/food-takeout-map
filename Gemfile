@@ -36,6 +36,7 @@ gem 'pry-byebug', group: :development
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'high_voltage', '~> 3.1'
+gem 'fog-aws'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
