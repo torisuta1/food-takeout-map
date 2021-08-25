@@ -27,7 +27,8 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <%= f.check_box :agreement, as: :boolean, checked:false, id: 'agreement', class: "agreement" %>
+    <%= f.label :agreement, class: "label" %><span class= "mobile">(携帯端末の場合はタッチしてください)</span>
+    <%= f.check_box :agreement, as: :boolean, checked:false, class: 'agreement' %>
     <p><%= link_to '利用規約', page_path('terms') %>と
     <%= link_to 'プライバシーポリシー', page_path('privacy_policy') %>に同意する</p>
     

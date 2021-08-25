@@ -126,8 +126,8 @@ Rails.application.configure do
   :address => "smtp.gmail.com",
   :port => 587,
   :domain => 'smtp.gmail.com',
-  :user_name => <%= Rails.application.credentials.aws[:mail_address] %>, #gmailアドレス
-  :password =>  <%= Rails.application.credentials.aws[:mail_password] %>, #gmailパスワード
-  :authentication => 'login',
+  :user_name => "<%= Rails.application.credentials.aws[:mail_address] %>", #gmailアドレス
+  :password =>  "<%= Rails.application.credentials.aws[:mail_password] %>", #gmailパスワード
+  :authentication => 'login'
 }
 end
