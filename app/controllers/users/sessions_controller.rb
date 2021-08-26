@@ -21,13 +21,12 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:remember_me])
-  end
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_sign_in_params
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:remember_me])
+    end
 end

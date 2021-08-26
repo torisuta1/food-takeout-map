@@ -11,9 +11,8 @@ class LikesController < ApplicationController
     @like.destroy
   end
 
- private 
-
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
+ private
+   def set_post
+     @post = Post.find(params[:post_id])
+   end
 end

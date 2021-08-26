@@ -22,14 +22,14 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.assets.initialize_on_precompile=false
+  config.assets.initialize_on_precompile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
@@ -119,15 +119,15 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = {host: 'http://www.food-takeout-map.work'}
+  config.action_mailer.default_url_options = { host: "http://www.food-takeout-map.work" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :enable_starttls_auto => true,
-  :address => "smtp.gmail.com",
-  :port => 587,
-  :domain => 'gmail.com',
-  :user_name => ENV['WELCOME_MAILER_ADDRESS'], #gmailアドレス
-  :password => ENV['WELCOME_MAILER_PASSWORD'], #gmailパスワード
-  :authentication => 'login'
+  enable_starttls_auto: true,
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "gmail.com",
+  user_name: ENV["WELCOME_MAILER_ADDRESS"], # gmailアドレス
+  password: ENV["WELCOME_MAILER_PASSWORD"], # gmailパスワード
+  authentication: "login"
 }
 end
