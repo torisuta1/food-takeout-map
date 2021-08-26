@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search]
   before_action :set_post, only: [:destroy]
   before_action :if_not_admin_or_current_in_user_posts, only: [:destroy]
-  
+
   def index
     @posts = Post.includes(:user).order("created_at DESC").page(params[:page]).per(15)
   end
@@ -49,8 +49,7 @@ class PostsController < ApplicationController
   end
 
 private
-
-  def post_params 
+  def post_params
     params.require(:post).permit(:title, :content, :genre_id, images_attributes: [:image])
   end
 

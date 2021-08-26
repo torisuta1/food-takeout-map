@@ -13,7 +13,7 @@
 #     title:"テスト#{n+1}回目",
 #     content: "テスト#{n+1}回目の投稿",
 #     user_id: rand(1..7),
-#     genre_id: rand(1..2)  
+#     genre_id: rand(1..2)
 #      }
 #   )
 # end

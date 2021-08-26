@@ -9,7 +9,7 @@ class RelationshipsController < ApplicationController
       end
     end
   end
-     
+
   def destroy
     @relation = Relationship.find_by(user_id: current_user.id, follow_id: @user.id)
     if @relation.destroy
@@ -20,7 +20,6 @@ class RelationshipsController < ApplicationController
   end
 
   private
-
     def set_user
       @user = User.find(params[:user_id])
     end

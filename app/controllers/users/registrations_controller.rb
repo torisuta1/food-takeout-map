@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super    
+    super
   end
 
   # GET /resource/edit
@@ -40,22 +40,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def when_guest_user
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    if resource.email == "guest@example.com"
+      redirect_to root_path, alert: "ゲストユーザーは削除できません。"
     end
   end
 
   protected
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation])
+    end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation])
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :password, :password_confirmation, :profile])
-  end
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :password, :password_confirmation, :profile])
+    end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
