@@ -27,12 +27,10 @@
 # ])
 # end
 
-
-
-User.create!(username:  "管理者",
-             email: "admin@example.com",
-             password:  "11111111",
-             password_confirmation: "11111111",
-             confirmed_at: Time.current,
-             agreement: true,
-             admin: true)
+# User.create!(username:  "管理者",
+#              email: "admin@example.com",
+#              password:  "11111111",
+#              password_confirmation: "11111111",
+#              confirmed_at: Time.current,
+#              agreement: true,
+#              admin: true)
