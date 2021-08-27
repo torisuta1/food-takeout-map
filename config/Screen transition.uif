@@ -6,49 +6,34 @@ signup
 signin
 ==>SignIn
 
+my_page
+==>My_page
+
 search
 ==>Search
 
 index
 ==>Index
 
-mypage
-==>MyPage
+submit
+==>Submit
 
-[SignUp]
---
-signup
+my_post
+==>My_post
+
+user_edit
+==>User_edit
+
+home
 ==>Home
 
-[SignIn]
+[My_page]
 --
-signin
-==>MyPage
-
+follow
+==>Follow
 
 [Search]
---
-search-result
-==>Search-Result
-[Index]
---
-userpage
-==>UserPage
-userpost
-==>UserPost
-
-[MyPage]
---
-post
 ==>Post
-mypost
-==>MyPost
-follow-userpost
-==>Follow-UserPost
 
-[Search-Result]
---
-userpage
-==>UserPage
-userpost
-==>UserPost
+[Index]
+==>Post
