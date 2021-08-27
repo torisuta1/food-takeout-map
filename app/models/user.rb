@@ -13,8 +13,8 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
-  def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+  def already_liked?(like, current_user_id)
+    like.pluck(:user_id).include?(current_user_id)
   end
 
   def self.guest

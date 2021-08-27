@@ -26,7 +26,7 @@
     <% end %>
     <p>--------------------------------------------------------------------------------------------------------------------------------------------------------</p>
     <h3>ユーザー投稿一覧</h3>
-    <% @user.posts.order(created_at: :desc).each do |post| %>
+    <% @user.posts.order(created_at: :desc).preload(:images, :likes, :liked_users).each do |post| %>
       <span id= "user-post-like-button-<%= post.id %>"> 
         <%= render 'likes/user_posts', post: post, user: @user %>
       </span>

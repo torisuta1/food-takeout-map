@@ -1,6 +1,6 @@
-<p>いいね件数:&ensp;<%= post.likes.count %></p>
+<p>いいね件数:&ensp;<%= post.likes.size %></p>
 <% if user_logged_in? %>
-  <% if current_user.already_liked?(post) %> 
+  <% if current_user.already_liked?(post.likes, current_user.id) %> 
     <%= button_to  post_like_path(post), method: :delete, id: 'like-button', remote: true do %>
       <i class="fas fa-heart"></i>
     <% end %>

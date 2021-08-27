@@ -10,11 +10,11 @@ class Post < ApplicationRecord
 
   def self.search(search, genre)
     if search.blank? && genre.blank?
-      Post.includes(:user)
+      Post.preload(:user, :images, :likes)
     elsif search.blank?
-      Post.where(genre_id: genre)
+      Post.preload(:user, :images, :likes).where(genre_id: genre)
     else
-      Post.where(["title LIKE ? or content LIKE ? ", "%#{search}%", "%#{search}%"]).or(Post.where(genre_id: genre))
+      Post.preload(:user, :images, :likes).where(["title LIKE ? or content LIKE ? ", "%#{search}%", "%#{search}%"]).or(Post.where(genre_id: genre))
     end
   end
 end

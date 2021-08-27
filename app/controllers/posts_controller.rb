@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :if_not_admin_or_current_in_user_posts, only: [:destroy]
 
   def index
-    @posts = Post.includes(:user).order("created_at DESC").page(params[:page]).per(15)
+    @posts = Post.preload(:user, :images, :likes).order("created_at DESC").page(params[:page]).per(15)
   end
 
   def new
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
 
   def my_post
-    @posts = Post.where(user_id: params[:id]).order("created_at DESC").page(params[:page]).per(10)
+    @posts = Post.includes(:images, :likes, :liked_users).where(user_id: params[:id]).order("created_at DESC").page(params[:page]).per(10)
   end
 
 private

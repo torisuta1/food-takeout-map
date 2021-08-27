@@ -20,7 +20,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: "test@example.com"
         fill_in "パスワード", with: "password"
         fill_in "確認用パスワード", with: "password"
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(current_path).to eq root_path
         expect(page).to have_content "本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。"
@@ -33,7 +33,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: ""
         fill_in "パスワード", with: ""
         fill_in "確認用パスワード", with: ""
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(page).to have_content "3 件のエラーが発生したため処理されませんでした:"
       end
@@ -45,7 +45,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: "test@example.com"
         fill_in "パスワード", with: "password"
         fill_in "確認用パスワード", with: "password"
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(page).to have_content "エラーが発生したため処理されませんでした:"
       end
@@ -57,7 +57,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: ""
         fill_in "パスワード", with: "password"
         fill_in "確認用パスワード", with: "password"
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(page).to have_content "エラーが発生したため処理されませんでした:"
       end
@@ -69,7 +69,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: "test@example.com"
         fill_in "パスワード", with: ""
         fill_in "確認用パスワード", with: "password"
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(page).to have_content "2 件のエラーが発生したため処理されませんでした:"
       end
@@ -81,7 +81,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: "test@example.com"
         fill_in "パスワード", with: "password"
         fill_in "確認用パスワード", with: ""
-        check "agreement"
+        check "同意"
         click_button "サインアップ"
         expect(page).to have_content "エラーが発生したため処理されませんでした:"
       end
@@ -93,7 +93,7 @@ RSpec.describe "User", type: :system do
         fill_in "メールアドレス", with: "test@example.com"
         fill_in "パスワード", with: "password"
         fill_in "確認用パスワード", with: "password"
-        uncheck "agreement"
+        uncheck "同意"
         click_button "サインアップ"
         expect(page).to have_content "エラーが発生したため処理されませんでした:"
       end

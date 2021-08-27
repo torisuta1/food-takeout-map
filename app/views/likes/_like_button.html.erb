@@ -2,7 +2,7 @@
   <li><%= user.username %></li>
  <% end %>
 <p>いいね件数:&ensp;<%= @post.likes.count %></p>
-<% if current_user.already_liked?(@post) %> 
+<% if current_user.already_liked?(@post.likes, current_user.id) %> 
   <%= button_to  post_like_path(@post), method: :delete, remote: true do %>
     <i class="fas fa-heart"></i>
   <% end %>
