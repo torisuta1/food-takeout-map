@@ -7,9 +7,9 @@
 <% end %>
 <p>投稿日:&ensp;<%= post.created_at.to_s(:datetime_jp) %></p><br>
 <p>投稿者:&ensp;<%= link_to post.user.username, user_path(post.user_id) %></p><br>
-<p>いいね件数:&ensp; <%= post.likes.count %></p>
+<p>いいね件数:&ensp; <%= post.likes.size %></p>
 <% if user_signed_in? %>
-  <% if current_user.already_liked?(post) %>
+  <% if current_user.already_liked?(post.likes, current_user.id) %>
     <%= button_to  post_like_path(post), method: :delete, id: 'like-button-user-show', remote: true do %>
       <i class="fas fa-heart"></i>
     <% end %>
