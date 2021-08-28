@@ -24,105 +24,83 @@
 <br>
 <br>
 
-## :bouquet:App URL(スマートフォンから見ることをおすすめします)
-https://love-dateme.com/top  
-<br>
-:tulip:PV数 6500PV  
-<br>
-:tulip:友だち登録数180人 
-<br>
-(2021年3月29日現在)
-<br>
+## App URL
+https://food-takeout-map.work  
 <br>
 <br>
 
-## :bouquet:Qiita記事
-[【Rails×LIFF】でデートサポートサービス『Date me』を作りました！【個人開発】](https://qiita.com/terakura-aina/items/c613a7078b460b6189ff)
-
-:tulip:LGTM 120
-<br>
-(2021年3月29日現在)
-<br>
-<br>
+## 基本的な利用方法の流れ
+ログイン後ヘッダータブから「投稿する」ボタンを押し、投稿画面から投稿
 <br>
 
-## :bouquet:note記事
-[Date meを通して伝えたいこと](https://note.com/terakura_aina/n/ne9b613c87e5e)  
-<br>
-Date meを作った理由について、想いの部分をまとめています。
+![投稿画面](https://i.gyazo.com/274fb4e2bd8e506e2ff7e09bc69adf52.png)
 <br>
 <br>
+投稿一覧から各投稿内容を確認でき店舗情報の確認
 <br>
 
-## :bouquet:Date meについて
-### 登場人物
-パートナーと仲良くしたい人
-
-### ユーザーが抱える問題
-奥さん  
-「仲は悪くない。だけど最近、"デートしよ"みたいなやりとりはもはやない。  
-新婚の時のようなドキドキする関係に戻りたい！もっと仲良くしたい！」  
-
-旦那さん  
-「そう言われても、具体的に何をしたらいいのかわからない…それに今更恥ずかしい…」
-
-### 解決方法
-直接デートに誘ったり、デート中に自分からドキドキアクションを起こすのが恥ずかしいなら、第三者が代わりに提案してくれれば良い。  
-
-* デート中に携帯はあまり見ることができない…  
-→LINE上で手軽にアドバイスが確認できます。
-
-### プロダクト
-LINE上で、デート中に"ドキドキするアクション"を提案、行動を後押ししてくれるアプリケーション  
-  
-* デートの時間が始まると、奥さんと旦那さんそれぞれにLINE botから「ミッション」が届きます。  
-* ミッションの一例→「手を繋ごう！」「10秒見つめてみて」など  
-* アクションの内容は、どんなデートでも実行できるようなものが中心となっています。
-
-### マーケット
-結婚3年以上たって「ドキドキって何？」となってきた夫婦
-<br>
-<br>
+![投稿一覧画面](https://i.gyazo.com/7e3e2019032cf41d16b55be026509e85.png)
+## 機能一覧
+* ユーザー認証機能（サインアップ、サインイン、サインアウト）
+* メールアドレス認証機能
+* パスワード再設定機能
+* ユーザー編集機能
+* ゲストログイン機能
+* 管理者機能
+* 店舗情報投稿機能
+* 投稿一覧機能
+* 投稿検索機能
+* マイ投稿表示機能
+* マイページ詳細機能
+* 投稿詳細表示機能
+* いいね機能（非同期）
+* ユーザーフォロー機能（非同期）
 <br>
 
-## :bouquet:使用技術
-* Ruby 2.6.6
-* Rails 6.1.2
-* MYSQL
+## 使用技術
+<br>
+
+バックエンド
+* Ruby 3.0.1
+* Rails 6.1.3.2
+<br>
+
+フロンドエンド
+* HTML
+* CSS
+* jQuery
+* Bootstrap
+<br>
+
+インフラ
+* MYSQL 8.0.26
 * Nginx
 * Puma
-* Capistrano
 * AWS
   * VPC
   * EC2
   * RDS
-  * ALB
+  * ELB
   * Route53
+  * S3
   * ACM
+<br>
+
+テスト
 * RSpec
-* TailwindCSS
 <br>
 
-## :bouquet:機能一覧
-* ユーザー特定機能(LINE API、fetch)
-* スケジュール作成、更新機能(LIFF、ajax)
-* ミッション通知機能(whenever、messaging API)
-* ミッション完了/未完了機能(ajax)
-* LINE応答機能(messaging API)
-<br>
-
-## :bouquet:画面遷移図
-https://xd.adobe.com/view/1720b733-f087-4b61-a494-12e01cba8629-4273/
+## 画面遷移フロー
+![画面遷移フロー](https://i.gyazo.com/e7038ef83bb49abfb5ea009866b4cbad.png)
 <br>
 <br>
 <br>
 
-## :bouquet:ER図
-![ER図](https://user-images.githubusercontent.com/72124914/109919119-7e263200-7cfb-11eb-955e-f668d374a2ec.png)
-
+## ER図
+![ER図](https://i.gyazo.com/aa5e27bccc2f9ce92ee921e366fd940a.png)
 <br>
 <br>
 <br>
 
-## :bouquet:インフラ構成図
-![インフラ構成図](https://user-images.githubusercontent.com/72124914/111998265-327ae180-8b5f-11eb-9391-fde266127a20.png)
+## インフラ構成図
+![インフラ構成図](https://i.gyazo.com/b0b4b8c2debb80aa1c6f03d9a22dc99f.jpg)
