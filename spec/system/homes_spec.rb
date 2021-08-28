@@ -1,11 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Home", type: :system do
-  before do
-    visit root_path
-  end
-
+  
   describe "when not logged in" do
+    before do
+      visit root_path
+    end
+
     context "guest_log_in" do
       it "guest login is available" do
         click_link "ゲストログイン（閲覧用）"
