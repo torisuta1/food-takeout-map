@@ -1,24 +1,128 @@
-# README
+# Food-TakeOut-Map
+テイクアウトに対応しているお店や、テイクアウト独自の商品情報を共有する飲食のテイクアウト専門サービスです。  
+<br>
+![トップ画像](https://i.gyazo.com/aff95a87b3a93bbe8b31503cc88cc7cd.jpg)
+<br>
+<br>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 遅くなってしまったお仕事の帰りに晩ご飯をテイクアウトで頼みたい時や、のんびり持ち帰って自宅で食べたい時などに
+  お店の情報を参照して参考にできます。  
+* 実際に頼んだ商品の情報を投稿することで他者と共有でき、おすすめのお店の商品を広めていくことができます。  
+<br>
 
-Things you may want to cover:
+### サービスの制作背景
+新型コロナウイルスの影響で多くの飲食店は営業時間を縮小して営業していたり、店内での飲食可能時間を限定的にしてテイクアウト
+のみでの体制に変更してお店を稼働させている状況が続いております。お店側としてはコロナウイルスによる影響前の営業時間や体制
+で営業することが難しくなっており、心理的にも経済的にも負担が続いております。また利用者側としても従来のように好きな時間に
+来店し飲食をすることができなくなっており、注文できる商品もテイクアウトのみという制限下で限定されている状況です。
+このような状況下で双方の負担を軽減できるサービスはないかと思案し、お店の商品情報を共有できるサービスにたどり着きました。
+純粋な飲食店情報であれば既に大手のサービスが展開されておりますが、コロナウイルス情勢下でのテイクアウトによる体制が反映さ
+れているものはなく、また店舗情報までの記載がメインであり個別での商品情報が載っているものはありませんでした。
+テイクアウトに対応しているお店の情報と実際の商品情報、この２点に着目してサービスを作ることでお店側としてはテイクアウト
+限定であっても利用者に商品情報を認識してもらえ、利用者側としてはお店の情報を共有できることで縮小体制に困惑することなく、
+テイクアウトでの利用が円滑に進み、先に挙げました双方の負担の解消を狙えると思いこのサービスを制作致しました。
+<br>
+<br>
 
-* Ruby version
+## :bouquet:App URL(スマートフォンから見ることをおすすめします)
+https://love-dateme.com/top  
+<br>
+:tulip:PV数 6500PV  
+<br>
+:tulip:友だち登録数180人 
+<br>
+(2021年3月29日現在)
+<br>
+<br>
+<br>
 
-* System dependencies
+## :bouquet:Qiita記事
+[【Rails×LIFF】でデートサポートサービス『Date me』を作りました！【個人開発】](https://qiita.com/terakura-aina/items/c613a7078b460b6189ff)
 
-* Configuration
+:tulip:LGTM 120
+<br>
+(2021年3月29日現在)
+<br>
+<br>
+<br>
 
-* Database creation
+## :bouquet:note記事
+[Date meを通して伝えたいこと](https://note.com/terakura_aina/n/ne9b613c87e5e)  
+<br>
+Date meを作った理由について、想いの部分をまとめています。
+<br>
+<br>
+<br>
 
-* Database initialization
+## :bouquet:Date meについて
+### 登場人物
+パートナーと仲良くしたい人
 
-* How to run the test suite
+### ユーザーが抱える問題
+奥さん  
+「仲は悪くない。だけど最近、"デートしよ"みたいなやりとりはもはやない。  
+新婚の時のようなドキドキする関係に戻りたい！もっと仲良くしたい！」  
 
-* Services (job queues, cache servers, search engines, etc.)
+旦那さん  
+「そう言われても、具体的に何をしたらいいのかわからない…それに今更恥ずかしい…」
 
-* Deployment instructions
+### 解決方法
+直接デートに誘ったり、デート中に自分からドキドキアクションを起こすのが恥ずかしいなら、第三者が代わりに提案してくれれば良い。  
 
-* ...
+* デート中に携帯はあまり見ることができない…  
+→LINE上で手軽にアドバイスが確認できます。
+
+### プロダクト
+LINE上で、デート中に"ドキドキするアクション"を提案、行動を後押ししてくれるアプリケーション  
+  
+* デートの時間が始まると、奥さんと旦那さんそれぞれにLINE botから「ミッション」が届きます。  
+* ミッションの一例→「手を繋ごう！」「10秒見つめてみて」など  
+* アクションの内容は、どんなデートでも実行できるようなものが中心となっています。
+
+### マーケット
+結婚3年以上たって「ドキドキって何？」となってきた夫婦
+<br>
+<br>
+<br>
+
+## :bouquet:使用技術
+* Ruby 2.6.6
+* Rails 6.1.2
+* MYSQL
+* Nginx
+* Puma
+* Capistrano
+* AWS
+  * VPC
+  * EC2
+  * RDS
+  * ALB
+  * Route53
+  * ACM
+* RSpec
+* TailwindCSS
+<br>
+
+## :bouquet:機能一覧
+* ユーザー特定機能(LINE API、fetch)
+* スケジュール作成、更新機能(LIFF、ajax)
+* ミッション通知機能(whenever、messaging API)
+* ミッション完了/未完了機能(ajax)
+* LINE応答機能(messaging API)
+<br>
+
+## :bouquet:画面遷移図
+https://xd.adobe.com/view/1720b733-f087-4b61-a494-12e01cba8629-4273/
+<br>
+<br>
+<br>
+
+## :bouquet:ER図
+![ER図](https://user-images.githubusercontent.com/72124914/109919119-7e263200-7cfb-11eb-955e-f668d374a2ec.png)
+
+<br>
+<br>
+<br>
+
+## :bouquet:インフラ構成図
+![インフラ構成図](https://user-images.githubusercontent.com/72124914/111998265-327ae180-8b5f-11eb-9391-fde266127a20.png)
