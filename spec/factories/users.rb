@@ -18,7 +18,7 @@ FactoryBot.define do
 
   factory :hoge_user, class: "User" do
     username { "hoge3" }
-    sequence(:email) { |n| "hogefuga1@example.com" }
+    sequence(:email) { |n| "hogefuga#{n}@example.com" }
     profile { "test" }
     password { "password2" }
     password_confirmation { "password2" }

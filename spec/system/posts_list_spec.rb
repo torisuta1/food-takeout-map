@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Search", type: :system do
   let!(:post) { create(:post) }
-  let!(:post2) { create(:post2) }
 
   describe "when not logged in" do
     before do
