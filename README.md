@@ -18,7 +18,7 @@
 <br>
 
 ## App URL
-https://food-takeout-map.work  
+https://www.food-takeout-map.work  
 <br>
 <br>
 
