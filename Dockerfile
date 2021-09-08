@@ -1,4 +1,5 @@
-FROM ruby:3.0.1
+# https://hub.docker.com/_/ruby
+FROM ruby:3.0.1-alpine
 RUN apk update && apk add --no-cache --update build-base tzdata bash yarn python2 imagemagick graphviz mysql-dev mysql-client
 
 WORKDIR /food-takeout-map
